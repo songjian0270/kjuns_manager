@@ -48,6 +48,12 @@
 				location.href = "${basePath}/content/delete?id="+id;
 			}
 		}
+		
+		function onNotifi(id){
+			if(confirm("确定要推送吗？")){
+				location.href = "${basePath}/content/pushNotifi?id="+id;
+			}
+		}
 	</script>
 
 
@@ -119,6 +125,7 @@
 						<td>${content.createDate}</td>
 						<td>
 							<a href="content/toEdit?id=${content.id}&sectionId=${sectionId}" class="tablelink">修改</a>
+							<a href="javascript:void(0);" onclick="onNotifi('${content.id}')" class="tablelink">推送</a>
 							<a href="javascript:void(0);" onclick="onDelete('${content.id}')" class="tablelink">删除</a> 
 						</td>
 					</tr>

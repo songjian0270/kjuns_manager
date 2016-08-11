@@ -15,6 +15,7 @@ import cn.jpush.api.push.model.Platform;
 import cn.jpush.api.push.model.PushPayload;
 import cn.jpush.api.push.model.audience.Audience;
 import cn.jpush.api.push.model.audience.AudienceTarget;
+import cn.jpush.api.push.model.audience.AudienceType;
 import cn.jpush.api.push.model.notification.AndroidNotification;
 import cn.jpush.api.push.model.notification.IosNotification;
 import cn.jpush.api.push.model.notification.Notification;
@@ -32,8 +33,8 @@ public class JPushUtils {
 	
 	private static Logger logger = LoggerFactory.getLogger(JPushUtils.class);
 	
-	private static final String APP_KEY = "f28f1ca5af67f1ba5e0c2242";
-	private static final String MASTER_SECRET = "b608f38e60b7bca46818d2ac"; //Portal上注册应用时生成的 masterSecret
+	private static final String APP_KEY = "d241bbbe3acf2533e3a42e43";
+	private static final String MASTER_SECRET = "c18d93eecac86625230fa33d"; //Portal上注册应用时生成的 masterSecret
 
 	private static JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY, 3);
 	
@@ -69,6 +70,30 @@ public class JPushUtils {
 	        }
 		return res;
 	}
+	
+	//alias  指定标记Audience
+		public static boolean sendCustomMsgToAll(String content, String title,String url){
+			 boolean res = true;
+			 PushPayload payload = buildPushObject_android_and_ios( content, title,url);
+//			 PushPayload payload = buildPushObject_all_all_alert("生日快乐");
+			// PushPayload payload = buildPushObject_all_alias_alerts("设置成功");
+//			 PushPayload payload = buildPushObject_android_and_ios(alias, "设置成功", "测试");
+		        try {
+		            PushResult result = jpushClient.sendPush(payload);
+		            logger.info("Got result - " + result);
+		            logger.info("发推送，Got result:{}", result);
+		        } catch (APIConnectionException e) {
+		        	res = false;
+		        	logger.error("Connection error. Should retry later. ", e);
+		        } catch (APIRequestException e) {
+		        	res = false;
+		        	logger.error("Error response from JPush server. Should review and fix it. ", e);
+		        	logger.info("HTTP Status:{}", e.getStatus());
+		        	logger.info("Error Code:{}", e.getErrorCode());
+		        	logger.info("Error Message:{}", e.getErrorMessage());
+		        }
+			return res;
+		}
 	
 //	private static PushPayload buildPushObject(String alias,String content, String orderNo,String flag){
 //		AndroidNotification androidNotification = AndroidNotification.newBuilder()
@@ -125,19 +150,19 @@ public class JPushUtils {
                 .build();  
     }  
       
-    /*** 平台是 Android IOS，目标是 tag 为 "tag1" 的设备 **/
-    public static PushPayload buildPushObject_android_and_ios(String alias, String alert, String title) {  
+    /*** 平台是 Android IOS **/
+    public static PushPayload buildPushObject_android_and_ios( String title, String alert,String url) {  
         return PushPayload.newBuilder()  
-                .setPlatform(Platform.android_ios())  
-               // .setAudience(Audience.alias(alias))  
-                .setAudience(Audience.tag("1211wanguyuguang122"))
+                .setPlatform(Platform.all())
+                .setAudience(Audience.all()) 
                 .setNotification(Notification.newBuilder()  
                         .setAlert(alert)  
                         .addPlatformNotification(AndroidNotification.newBuilder()  
                                 .setTitle(title).build())  
                         .addPlatformNotification(IosNotification.newBuilder()  
-                                .incrBadge(1)  
-                                .addExtra("extra_key", "extra_value").build())  
+                                .incrBadge(1)
+                                .setAlert(title)  
+                                .addExtra("url", url).build())  
                         .build())  
                 .setOptions(options)
                 .build();  

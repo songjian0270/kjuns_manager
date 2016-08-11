@@ -140,4 +140,11 @@ public class ContentController extends BaseController {
 		return "content/issuerList";
 	}
 	
+	@RequestMapping(value="pushNotifi", method= RequestMethod.GET)
+	public String pushNotifi(String id, ModelMap map, HttpSession session){
+
+		contentService.pushNotifi(id);
+		return list(null,null, 1, map);
+	}
+	
 }
