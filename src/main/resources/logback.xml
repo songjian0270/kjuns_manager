@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+	<!--日志路径 -->
+	<property name="LOG_HOME" value="/Users/Jack/Documents/kjuns/log" />
+
+	<!-- 日志文件输出 -->
+	<appender name="rollingFileOut"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/kjuns-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy><!-- -->
+			<!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> 
+				<MaxFileSize>0.1MB</MaxFileSize> </triggeringPolicy> -->
+
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %level [%thread] %logger.%class{0}#%method [%file:%line] %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<!-- 定义控制台输出 -->
+	<appender name="consoleOut" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date %level [%thread] %logger.%class{0}#%method [%file:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="App">
+		<appender-ref ref="rollingFileOut" />
+	</logger>
+
+	<root level="DEBUG"><!-- TRACE, DEBUG, INFO, WARN, ERROR, ALL, OFF -->
+		<appender-ref ref="consoleOut" /><!-- 部署到服务器上时要注释掉 -->
+		<appender-ref ref="rollingFileOut" />
+	</root>
+	
+</configuration>  
+

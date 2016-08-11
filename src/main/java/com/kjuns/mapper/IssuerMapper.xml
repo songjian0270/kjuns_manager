@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjuns.mapper.IssuerMapper">
+
+	<select id="selectByName" parameterType="String" resultType="int">
+		SELECT count(id) From kjuns_user_info where nick_name = #{nickName}
+	</select>
+
+	<select id="getTotalCount" resultType="int" parameterType="com.kjuns.model.UserInfo">
+		SELECT count(*) FROM kjuns_user_info where (data_flag = 2 or data_flag=21)
+		<if test="nickName != null and nickName != ''">
+			and nick_name like CONCAT('%',#{nickName},'%')
+		</if>
+	</select>
+	
+	<select id="queryUserInfoList" resultType="com.kjuns.model.UserInfo">
+		SELECT id,mobile_phone mobilePhone,face_src faceSrc,sex,nick_name nickName,create_by createBy,data_flag dataFlag,
+		create_date createDate,TIMESTAMPDIFF(DAY, create_date,CURRENT_TIMESTAMP()) automaticThoughts,location
+		FROM kjuns_user_info where (data_flag = 2 or data_flag=21)
+		<if test="nickName != null and nickName != ''">
+			and nick_name like CONCAT('%',#{nickName},'%')
+		</if>
+		order by create_date desc limit #{pageNo},#{pageSize}
+	</select>
+	
+	<select id="deleteUserInfo" parameterType="com.kjuns.model.UserInfo">
+		update kjuns_user_info set data_flag=#{dataFlag}, update_by = #{updateBy}, update_date = #{updateDate} where id = #{id}
+	</select>
+	
+	<select id="updateUserInfo" parameterType="com.kjuns.model.UserInfo">
+		update kjuns_user_info set face_src = #{faceSrc}, sex = #{sex}, nick_name =#{nickName},data_flag =#{dataFlag},
+		update_by = #{updateBy}, update_date = #{updateDate} where id = #{id}
+	</select>
+	
+	<select id="selectById" parameterType="String" resultType="com.kjuns.model.UserInfo">
+		SELECT id,mobile_phone mobilePhone,face_src faceSrc,sex,nick_name nickName,create_by createBy,data_flag dataFlag,
+		create_date createDate,TIMESTAMPDIFF(DAY, create_date,CURRENT_TIMESTAMP()) automaticThoughts,location FROM kjuns_user_info where id=#{0}
+	</select>
+	
+	<insert id="addUserInfo" parameterType="com.kjuns.model.UserInfo" >
+		insert into kjuns_user_info (id,nick_name,sex,face_src,create_by,create_date,data_flag,update_by,update_date) 
+		values(#{id},#{nickName},#{sex},#{faceSrc},#{createBy},#{createDate},2,#{updateBy},#{updateDate})
+	</insert>
+	
+</mapper>

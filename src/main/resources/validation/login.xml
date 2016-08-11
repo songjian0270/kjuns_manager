@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators SYSTEM "../dtd/validation.dtd">
+<validators>
+
+	<validator target="com.kjuns.controller.UserLoginController" method="login">
+		<field name="signature" dataType="String">
+			<rule validate="notEmpty" msg="signature不能为空" />
+		</field>
+	</validator>
+	
+	<validator target="com.kjuns.controller.UserLoginController" method="binding">
+		<field name="token" dataType="String">
+			<rule validate="notEmpty" msg="token不能为空" />
+		</field>
+		<field name="signature" dataType="String">
+			<rule validate="notEmpty" msg="signature不能为空" />
+		</field>
+	</validator>
+	
+	<validator target="com.kjuns.controller.UserLoginController" method="cellPhoneNumberIsExisting">
+		<field name="cellPhoneNumber" dataType="String">
+	 	    <rule validate="notEmpty" msg="手机号不能为空"/>
+	    </field>
+	</validator>
+	
+	<validator target="com.kjuns.controller.UserLoginController" method="bindingIsExisting">
+		<field name="token" dataType="String">
+			<rule validate="notEmpty" msg="token不能为空" />
+		</field>
+		<field name="signature" dataType="String">
+			<rule validate="notEmpty" msg="signature不能为空" />
+		</field>
+	</validator>
+	
+	<validator target="com.kjuns.controller.UserLoginController" method="sign">
+		<field name="token" dataType="String">
+			<rule validate="notEmpty" msg="token不能为空" />
+		</field>
+		<field name="signature" dataType="String">
+			<rule validate="notEmpty" msg="signature不能为空" />
+		</field>
+	</validator>
+
+	<validator target="com.kjuns.controller.UserLoginController" method="loginOut">
+		<field name="token" dataType="String">
+			<rule validate="notEmpty" msg="token不能为空" />
+		</field>
+		<field name="signature" dataType="String">
+			<rule validate="notEmpty" msg="signature不能为空" />
+		</field>
+	</validator>
+
+</validators>

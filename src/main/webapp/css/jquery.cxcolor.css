@@ -1,0 +1,33 @@
+﻿.button {display: inline-block;zoom: 1; *display: inline;vertical-align: baseline;margin: 0 2px;outline: none;cursor: pointer;text-align: center;text-decoration: none;font: 14px/100% Arial, Helvetica, sans-serif;padding:0.25em 0.6em 0.3em;text-shadow: 0 1px 1px rgba(0,0,0,.3);-webkit-border-radius: .5em; -moz-border-radius: .5em;border-radius: .5em;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.red {color: #faddde;border: solid 1px #980c10;background: #d81b21;background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#A51715));background: -moz-linear-gradient(top,  #ed1c24,  #A51715);filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+}
+.red:hover { background: #b61318; background: -webkit-gradient(linear, left top, left bottom, from(#c9151b), to(#a11115)); background: -moz-linear-gradient(top,  #c9151b,  #a11115); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#c9151b', endColorstr='#a11115'); color:#fff;}
+.red:active {color: #de898c;background: -webkit-gradient(linear, left top, left bottom, from(#aa1317), to(#ed1c24));background: -moz-linear-gradient(top,  #aa1317,  #ed1c24);filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');}
+.cor_bs,.cor_bs:hover{color:#ffffff;}
+.keBody{background:url(../img/bodyBg.jpg) repeat #333;}
+.keTitle{height:100px; line-height:100px; font-size:30px; font-family:'微软雅黑'; color:#FFF; text-align:center; background:url(../img/bodyBg3.jpg) repeat-x bottom left; font-weight:normal; padding:0; margin:0}
+.kePublic{background:#ddd; padding:50px;}
+.keBottom{color:#FFF; padding-top:25px; line-height:28px; text-align:center; font-family:'微软雅黑'; background:url(../img/bodyBg2.jpg) repeat-x top left; padding-bottom:25px}
+.keBottom *{padding:0; margin:0}
+.keTxtP{font-size:16px; color:#ffffff;}
+.keUrl{color:#FFF; font-size:30px;}
+.keUrl:hover{ text-decoration: underline; color: #FFF; }
+.mKeBanner,.mKeBanner div{text-align:center;}
+
+.wrap{}
+/* 颜色输入框
+------------------------------ */
+.input_cxcolor{width:18px;height:18px;padding:0;border:none;background:#000 url(../images/cxcolor.png) no-repeat;font-size:0;line-height:0;vertical-align:middle;cursor:pointer;}
+
+/* 颜色选择器
+------------------------------ */
+.cxcolor{display:none;position:absolute;z-index:1111111;}
+.cxcolor .panel_hd{position:relative;width:220px;padding:0 5px;border:1px solid #000;border-bottom:none;background:#fff;font:normal 12px/20px "\5B8B\4F53";}
+.cxcolor .panel_hd a{color:#999;text-decoration:none;}
+.cxcolor .panel_hd a:hover{color:#333;}
+.cxcolor .clear{position:absolute;top:0;right:5px;}
+.cxcolor table{border-collapse:collapse;table-layout:fixed;empty-cells:show;}
+.cxcolor td{position:static;width:10px;height:10px;padding:0;border:1px solid #000;font-size:0;line-height:0;cursor:pointer;}
+
+.cxcolor_lock{display:none;position:absolute;top:0;left:0;background:#fff;z-index:9999;filter:alpha(opacity=0);opacity:0;}

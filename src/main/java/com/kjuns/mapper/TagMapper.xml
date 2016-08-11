@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjuns.mapper.TagMapper">
+
+	<select id="selectByName" parameterType="String" resultType="int">
+		SELECT count(id) From kjuns_tag where name = #{name}
+	</select>
+
+	<select id="getTotalCount" resultType="int" parameterType="String">
+		SELECT count(*) FROM kjuns_tag where data_flag = 1
+		<if test="name != null and name != ''">
+			and name like CONCAT('%',#{name},'%')
+		</if>
+	</select>
+	
+	<select id="queryTagList" resultType="com.kjuns.model.Tag">
+		SELECT id, name, create_by createBy,create_date createDate 
+		FROM kjuns_tag where data_flag = 1 
+		<if test="name != null and name != ''">
+			and name like CONCAT('%',#{name},'%')
+		</if>
+		order by create_date desc limit #{pageNo},#{pageSize}
+	</select>
+	
+	<select id="selectById" parameterType="String" resultType="com.kjuns.model.Tag">
+		SELECT * FROM kjuns_tag where id=#{0}
+	</select>
+	
+	<select id="deleteTag" parameterType="com.kjuns.model.Tag">
+		update kjuns_tag set data_flag = 0, update_by = #{updateBy}, update_date = #{updateDate}  where id = #{id}
+	</select>
+	
+	<insert id="addTag" parameterType="com.kjuns.model.Tag" >
+		insert into kjuns_tag (id,name,create_by,create_date,data_flag,update_by,update_date) 
+		values(#{id},#{name},#{createBy},#{createDate},1,#{updateBy},#{updateDate})
+	</insert>
+	
+	<update id="updateTag" parameterType="com.kjuns.model.Tag">
+		update kjuns_tag set name = #{name}, update_by = #{updateBy}, update_date = #{updateDate} where id = #{id}
+	</update>
+	
+</mapper>

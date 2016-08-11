@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	
+	 <!-- 缓存管理器 使用Ehcache实现 -->  
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>  
+    </bean>  
+  
+    <!-- 会话DAO -->  
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO"/>  
+  
+    <!-- 会话管理器 -->  
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">  
+        <property name="sessionDAO" ref="sessionDAO"/>  
+    </bean>  
+    
+   <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="authRealm" />
+		<property name="cacheManager" ref="memoryCacheManager" />
+	</bean>
+
+	<bean id="memoryCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+  
+    <!-- Shiro生命周期处理器 -->  
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>  
+  
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+        <property name="securityManager" ref="securityManager"/>  
+		<property name="loginUrl" value="/admin/toLogin" />
+		<property name="successUrl" value="/admin/main" />
+		<property name="unauthorizedUrl" value="/admin/notAuth" />
+        <property name="filterChainDefinitions">  
+            <value>  
+            	<!-- 静态资源允许访问 -->  
+            	/css/**=anon
+				/editor/**=anon
+				/html/**=anon
+				/images/**=anon
+				/js/**=anon
+				/My97DatePicker/**=anon
+				<!-- 富编辑器 -->
+				/ueditor/** = anon
+				/system/** = anon
+				
+                <!-- 登录页允许访问 -->  
+                /admin/login = anon  
+				/admin/toLogin=anon
+				/admin/notAuth=anon
+				/admin/toUpdatePwd=anon
+				/admin/updatePwd=anon
+				/admin/logout=logout
+				/admin/main=authc
+				/admin/top=authc
+				/admin/left=authc
+				/admin/index=authc
+				
+				/admin/**=perms["帐号管理"]
+				<!--/tag/**=perms["标签管理"]
+				/section/**=perms["专栏管理"]
+				/news/**=perms["资讯管理"]
+				/video/**=perms["视频管理"]
+				/images/**=perms["图集管理"]-->
+				
+				/tag/**=perms["内容管理"]
+				/section/**=perms["内容管理"]
+				/news/**=perms["内容管理"]
+				/video/**=perms["内容管理"]
+				/images/**=perms["内容管理"]
+				/user/**=perms["用户管理"]
+				/faq/**=perms["用户管理"]
+				
+                <!-- 其他资源需要认证 -->  
+                /** = authc  
+            </value>  
+        </property>  
+    </bean>  
+    
+</beans>
