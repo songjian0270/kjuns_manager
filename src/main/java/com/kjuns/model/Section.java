@@ -11,6 +11,10 @@ public class Section extends Model{
 	private String thumbnail;
 	
 	private int isTop;
+	
+	private String issuers;
+	
+	private String issuersName;
 
 	public String getTitle() {
 		return title;
@@ -50,6 +54,22 @@ public class Section extends Model{
 
 	public void setIsTop(int isTop) {
 		this.isTop = isTop;
+	}
+
+	public String getIssuers() {
+		return issuers;
+	}
+
+	public void setIssuers(String issuers) {
+		this.issuers = issuers;
+	}
+
+	public String getIssuersName() {
+		return issuersName;
+	}
+
+	public void setIssuersName(String issuersName) {
+		this.issuersName = issuersName;
 	}
 	
 }

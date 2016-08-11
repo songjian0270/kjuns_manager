@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="queryUserInfoList" resultType="com.kjuns.model.UserInfo">
-		SELECT info.mobile_phone mobilePhone,info.face_src faceSrc,info.sex,info.province + info.city location,
+		SELECT info.mobile_phone mobilePhone,info.face_src faceSrc,info.sex,info.location location,
 		info.nick_name nickName,accout.id accountId, info.create_by createBy,info.create_date createDate
 		FROM kjuns_user_account accout,kjuns_user_info info 
 		where accout.data_flag = 1 and info.data_flag = 1 and accout.user_id = info.id

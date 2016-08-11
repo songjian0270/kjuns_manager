@@ -207,6 +207,14 @@
 					<td><textarea rows="50" cols="50" name="summary" id="summary" class="textinput">${section.summary}</textarea></td>
 				</tr>
 				<tr>
+					<td class="w100">发布人</td>
+					<td>
+						<input name="issuers" id="issuers" type="hidden" class="dfinput w200" value="${section.issuers}" readonly="readonly"/>
+						<input name="issuersName" id="issuersName" type="text" class="dfinput w200" value="${section.issuersName}" readonly="readonly"/>
+						<div onclick="myIssuers()">添加</div>
+					</td>
+				</tr>
+				<tr>
 					<td class="w100">缩略图</td>
 					<td>
 						<div class="col-md-offset-3 col-md-6">
@@ -278,7 +286,28 @@
 			</table>
 		</form>
 	</div>
+	<script type="text/javascript">  
+		
+		function myIssuers() {  
+			$("#issuer-iframe").show();
+	    } 
 
+		function closeIssuers(val, name){
+			//var val = $(window.frames["myTagFrame"].document).find("#tags").val();
+			$("#issuer-iframe").hide();
+			$('#issuers').val(val)
+			$('#issuersName').val(name)
+		}
+
+	</script>
+	
+	<!--弹出内容层-->
+	<div class="tip-ctent" style="width: 550px" id="issuer-iframe">
+    	<div class="tiptop"><span id="windowSapn">推荐阅读</span></div>
+      	<div class="tipinfo">
+		 	<iframe id="myIssuerFrame" frameborder="0" src="content/issuer/list?pageNumber=1"  style="width: 100%; height: 550px;"></iframe>  
+        </div>
+    </div>
 </body>
 
 </html>

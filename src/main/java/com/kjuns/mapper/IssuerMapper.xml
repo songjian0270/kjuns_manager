@@ -38,8 +38,8 @@
 	</select>
 	
 	<insert id="addUserInfo" parameterType="com.kjuns.model.UserInfo" >
-		insert into kjuns_user_info (id,nick_name,sex,mobile_phone,face_src,create_by,create_date,data_flag,update_by,update_date) 
-		values(#{id},#{nickName},#{sex},#{mobilePhone},#{faceSrc},#{createBy},#{createDate},2,#{updateBy},#{updateDate})
+		insert into kjuns_user_info (id,nick_name,sex,mobile_phone,face_src,create_by,create_date,data_flag,update_by,update_date,user_id) 
+		values(#{id},#{nickName},#{sex},#{mobilePhone},#{faceSrc},#{createBy},#{createDate},2,#{updateBy},#{updateDate},#{issuers})
 	</insert>
 	
 </mapper>
