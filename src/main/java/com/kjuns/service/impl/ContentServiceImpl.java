@@ -17,6 +17,7 @@ import com.kjuns.model.UserInfo;
 import com.kjuns.service.ContentService;
 import com.kjuns.util.CommonConstants;
 import com.kjuns.util.CommonUtils;
+import com.kjuns.util.JPushUtils;
 import com.kjuns.util.UUIDUtils;
 import com.kjuns.util.pager.Page;
 
@@ -188,4 +189,16 @@ public class ContentServiceImpl implements ContentService {
 		return content;
 	}
 
+	/***
+	 * 推送这条内容到客户端
+	 */
+	public void pushNotifi(String id){
+		Content content = selectById(id);
+		String title = content.getTitle();
+		String msgBody = content.getSummary();
+		if(msgBody.length()>500){
+			msgBody = msgBody.substring(0, 499);
+		}
+		JPushUtils.sendCustomMsgToAll(msgBody, title, "kanjunshi://content/id="+id);
+	}
 }

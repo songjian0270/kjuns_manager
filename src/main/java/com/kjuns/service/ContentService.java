@@ -14,5 +14,6 @@ public interface ContentService extends Serializable {
 	void deleteContent(Content content);
 
 	int addContent(Content content);
-
+	
+	void pushNotifi(String id);
 }
