@@ -70,7 +70,8 @@ public class IssuerController extends BaseController {
 		if (issuerService.addIssuer(userInfo) == -1) {
 			map.addAttribute("message", "发布人昵称已存在");
 		}
-		return list(null, 1, map);
+		userInfo = new UserInfo();
+		return list(userInfo, 1, map);
 	}
 	
 	/**
