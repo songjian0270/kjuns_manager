@@ -1,6 +1,5 @@
 package com.kjuns.service.impl;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +31,6 @@ public class TagServiceImpl implements TagService {
 	public Page queryTagList(String name, Page page) {
 		int total = tagMapper.getTotalCount(name);
 		List<Tag> tags = tagMapper.queryTagList(name, page.getStart(), page.getPageSize());
-		for(Tag tag:tags){
-			try {
-				Date d = CommonConstants.DATETIME_SEC.parse(tag.getCreateDate());
-				tag.setCreateDate(CommonConstants.DATETIME_SEC.format(d));
-			} catch (ParseException e) {
-			}
-		}
 		page.setTotalCount(total);
 		page.setList(tags);
 		return page;

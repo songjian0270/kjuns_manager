@@ -75,6 +75,8 @@
 						target="rightFrame">专栏管理</a><i></i></li>
 					<li><cite></cite><a href="content/list?pageNumber=1"
 						target="rightFrame">内容管理</a><i></i></li>
+					<li><cite></cite><a href="banner/list?pageNumber=1"
+						target="rightFrame">banner管理</a><i></i></li>
 				</ul>
 			</dd>
 		</shiro:hasPermission>

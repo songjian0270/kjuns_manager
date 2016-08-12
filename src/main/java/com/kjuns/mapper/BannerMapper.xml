@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kjuns.mapper.BannerMapper">
+
+	<select id="selectBytitle" parameterType="String" resultType="int">
+		SELECT count(id) From kjuns_banner where title = #{title}
+	</select>
+
+	<select id="getTotalCount" resultType="int" parameterType="com.kjuns.model.Banner">
+		SELECT count(*) FROM kjuns_banner where data_flag = 1
+		<if test="title != null and title != ''">
+			and title like CONCAT('%',#{title},'%')
+		</if>
+	</select>
+	
+	<select id="queryBannerList" resultType="com.kjuns.model.Banner">
+		SELECT id, title, content, url, background, sort_index sortIndex,create_by createBy,create_date createDate 
+		FROM kjuns_banner where data_flag = 1 
+		<if test="title != null and title != ''">
+			and title like CONCAT('%',#{title},'%')
+		</if>
+		order by create_date desc limit #{pageNo},#{pageSize}
+	</select>
+	
+	<select id="selectById" parameterType="String" resultType="com.kjuns.model.Banner">
+		SELECT  id, title, content, url, background, sort_index sortIndex,create_by createBy,create_date createDate  FROM kjuns_banner where id=#{0}
+	</select>
+	
+	<select id="deleteBanner" parameterType="com.kjuns.model.Banner">
+		update kjuns_banner set data_flag = 0, update_by = #{updateBy}, update_date = #{updateDate}  where id = #{id}
+	</select>
+	
+	<insert id="addBanner" parameterType="com.kjuns.model.Banner" >
+		insert into kjuns_banner (id,title,content,url,background,sort_index,create_by,create_date,data_flag,update_by,update_date) 
+		values(#{id},#{title},#{content},#{url},#{background},#{sortIndex},#{createBy},#{createDate},1,#{updateBy},#{updateDate})
+	</insert>
+	
+	<update id="updateBanner" parameterType="com.kjuns.model.Banner">
+		update kjuns_banner set title = #{title}, content=#{content}, url=#{url},background=#{background},sort_index=#{sortIndex},
+		update_by = #{updateBy}, update_date = #{updateDate} where id = #{id}
+	</update>
+	
+</mapper>
