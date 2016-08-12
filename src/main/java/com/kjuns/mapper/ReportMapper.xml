@@ -3,29 +3,29 @@
 <mapper namespace="com.kjuns.mapper.ReportMapper">
 
 	<select id="getTotalCount" resultType="int" parameterType="com.kjuns.model.Report">
-		SELECT count(*) FROM kjuns_faq where data_flag = 1
-		<if test="title != null and title != ''">
-			and title like CONCAT('%',#{title},'%')
+		SELECT count(*) FROM kjuns_report where data_flag = 1
+		<if test="contentType != null and contentType != ''">
+			and report_type like CONCAT('%',#{contentType},'%')
 		</if>
-		<if test="content != null and content != ''">
-			and content like CONCAT('%',#{content},'%')
+		<if test="dataFlag != null and dataFlag != ''">
+			and data_flag like CONCAT('%',#{dataFlag},'%')
 		</if>
 	</select>
 	
 	<select id="queryReportList" resultType="com.kjuns.model.Report">
-		SELECT id, title, content, user_id userId,create_by createBy,create_date createDate 
+		SELECT report_id contentId, report_type contentType, user_id userId,create_by createBy,create_date createDate 
 		FROM kjuns_report where data_flag = 1 
-		<if test="title != null and title != ''">
-			and title like CONCAT('%',#{title},'%')
+		<if test="contentType != null and contentType != ''">
+			and report_type like CONCAT('%',#{contentType},'%')
 		</if>
-		<if test="content != null and content != ''">
-			and content like CONCAT('%',#{content},'%')
+		<if test="dataFlag != null and dataFlag != ''">
+			and data_flag like CONCAT('%',#{dataFlag},'%')
 		</if>
 		order by create_date desc limit #{pageNo},#{pageSize}
 	</select>
 	
 	
-	<select id="deleteFaq" parameterType="com.kjuns.model.Report">
+	<select id="deleteReport" parameterType="com.kjuns.model.Report">
 		update kjuns_report set data_flag = 0, update_by = #{updateBy}, update_date = #{updateDate}  where id = #{id}
 	</select>
 	
