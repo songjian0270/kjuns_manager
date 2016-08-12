@@ -90,6 +90,8 @@
 						target="rightFrame">反馈管理</a><i></i></li>
 					<li><cite></cite><a href="issuer/list?pageNumber=1"
 						target="rightFrame">发布人管理</a><i></i></li>
+					<li><cite></cite><a href="issuer/list?pageNumber=1"
+						target="rightFrame">举报管理</a><i></i></li>
 				</ul>
 			</dd>
 		</shiro:hasPermission>

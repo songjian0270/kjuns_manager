@@ -32,4 +32,8 @@
 		update_date = #{updateDate}  where id = #{id}
 	</select>
 	
+	<select id="selectById" resultType="com.kjuns.model.UserInfo">
+		SELECT nick_name nickName FROM kjuns_user_info  where data_flag = 1 and id=#{id}
+	</select>
+	
 </mapper>

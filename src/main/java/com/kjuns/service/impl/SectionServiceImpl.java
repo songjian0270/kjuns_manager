@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kjuns.mapper.IssuerMapper;
 import com.kjuns.mapper.SectionMapper;
 import com.kjuns.model.Section;
+import com.kjuns.model.UserInfo;
 import com.kjuns.service.SectionService;
 import com.kjuns.util.CommonConstants;
 import com.kjuns.util.CommonUtils;
@@ -21,6 +23,9 @@ public class SectionServiceImpl implements SectionService {
 
 	@Autowired
 	private SectionMapper sectionMapper;
+	
+	@Autowired
+	private IssuerMapper issuerMapper;
 
 	@Override
 	public Page querySectionList(String title, Page page) {
@@ -52,6 +57,10 @@ public class SectionServiceImpl implements SectionService {
 		if (count > 1) {// 专栏名称已经存在
 			return -1;
 		}
+		if(CommonUtils.notEmpty(section.getIssuers())){
+			String [] issuersArr = section.getIssuers().split("&#%&");
+			section.setIssuers(issuersArr[0]);
+		}
 		if (CommonUtils.notEmpty(section.getId())) {// 修改流程
 			sectionMapper.updateSection(section);
 		} else {
@@ -68,6 +77,10 @@ public class SectionServiceImpl implements SectionService {
 
 	public Section selectById(String id) {
 		Section section = sectionMapper.selectById(id);
+		if(CommonUtils.notEmpty(section.getIssuers())){
+			UserInfo userInfo = issuerMapper.selectById(section.getIssuers());
+			section.setIssuersName(userInfo.getNickName());
+		}
 		if(CommonUtils.notEmpty(section.getBackground())){
 			section.setBackground(CommonUtils.getImage(section.getBackground()));
 		}

@@ -17,5 +17,7 @@ public interface UserInfoMapper extends Serializable {
 			@Param(value="pageNo")int pageNo, @Param(value="pageSize")int pageSize);
 	
 	void deleteUserInfo(UserInfo userInfo);
+	
+	UserInfo selectById(@Param(value="id")String id);
 
 }
