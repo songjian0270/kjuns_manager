@@ -105,7 +105,7 @@
 				<c:forEach items="${page.list}" var="section">
 					<tr>
 						<td width="400px">${section.title}</td>
-						<td width="800px">${section.summary}</td>
+						<td width="600px">${section.summary}</td>
 						<td width="60px" align="center"><img src="${section.thumbnail}" height="20px" width="20px"/></td>
 						<td width="60px" align="center"><img src="${section.background}" height="20px" width="20px"/></td>
 						<td width="200px">${section.createDate}</td>

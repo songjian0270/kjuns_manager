@@ -44,9 +44,11 @@
 		}
 		
 		function confirm(){
-			var chk_value =[];
-			var chk_name = [];
-			$('input[name="checkbox"]:checked').each(function(){
+		//	var chk_value =[];
+		//	var chk_name = [];
+			var chk_value = $('input:radio[name=radio]:checked').val();
+			var chk_name = $('#'+chk_value).val();
+			/* $('input[name="radio"]:checked').each(function(){
 				var nameVal = $('#'+$(this).val()).val();
 				chk_value.push($(this).val() + "&#%&"+ nameVal); 
 				chk_name.push(nameVal); 
@@ -59,7 +61,7 @@
 					alert('目前只能选择1项!');
 					return;
 				}
-			}
+			} */
 			parent.closeIssuers(chk_value.toString(), chk_name.toString());
 		}
 		
@@ -100,7 +102,7 @@
 				<c:forEach items="${page.list}" var="userInfo">
 					<tr>
 						<th>
-							<input type="checkbox" name="checkbox" value="${userInfo.id}"/>
+							<input type="radio" name="radio" value="${userInfo.id}"/>
 							<input type="hidden" id="${userInfo.id}" value="${userInfo.nickName}"/>
 						</th>
 						<td>${userInfo.nickName}</td>

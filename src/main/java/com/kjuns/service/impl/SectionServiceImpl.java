@@ -34,7 +34,7 @@ public class SectionServiceImpl implements SectionService {
 		for(Section section:sections){
 			if(CommonUtils.notEmpty(section.getSummary())){
 				if(section.getSummary().length() > 50){
-					section.setSummary(section.getSummary().substring(0, 50)+".....");
+					section.setSummary(section.getSummary().substring(0, 40)+".....");
 				}
 			}
 			if(CommonUtils.notEmpty(section.getBackground())){

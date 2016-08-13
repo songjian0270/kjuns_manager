@@ -77,6 +77,8 @@
 						target="rightFrame">内容管理</a><i></i></li>
 					<li><cite></cite><a href="banner/list?pageNumber=1"
 						target="rightFrame">banner管理</a><i></i></li>
+					<li><cite></cite><a href="camp/list?pageNumber=1"
+						target="rightFrame">阵营管理</a><i></i></li>
 				</ul>
 			</dd>
 		</shiro:hasPermission>
