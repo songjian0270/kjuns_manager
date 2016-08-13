@@ -264,7 +264,9 @@
 				</tr> --%>
 				<tr>
 					<td class="w100">摘要</td>
-					<td><input name="summary" id="summary" type="text" class="dfinput w200" value="${content.summary}" maxlength="12" /></td>
+					<td>
+						<textarea rows="50" cols="50" name="summary" id="summary" class="textinput">${content.summary}</textarea>
+					</td>	
 				</tr>
 				<tr>
 					<td class="w100">缩略图</td>

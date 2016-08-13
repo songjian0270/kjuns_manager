@@ -14,21 +14,21 @@
 	</select>
 	
 	<select id="queryTypeList" resultType="com.kjuns.model.ContentType">
-		SELECT id, name, create_by createBy,create_date createDate 
+		SELECT id, name, sort_index sortIndex,create_by createBy,create_date createDate 
 		FROM kjuns_content_type where data_flag = 1 
 		<if test="name != null and name != ''">
 			and name like CONCAT('%',#{name},'%')
 		</if>
-		order by create_date desc limit #{pageNo},#{pageSize}
+		order by sort_index limit #{pageNo},#{pageSize}
 	</select>
 	
 	<select id="querySelectList" resultType="map">
 		SELECT id, name FROM kjuns_content_type where data_flag = 1 
-		order by create_date desc 
+		order by create_date 
 	</select>
 	
 	<select id="selectById" parameterType="String" resultType="com.kjuns.model.ContentType">
-		SELECT * FROM kjuns_content_type where id=#{0}
+		SELECT id, name, sort_index sortIndex,create_by createBy,create_date createDate  FROM kjuns_content_type where id=#{0}
 	</select>
 	
 	<select id="deleteType" parameterType="com.kjuns.model.ContentType">
@@ -36,12 +36,12 @@
 	</select>
 	
 	<insert id="addType" parameterType="com.kjuns.model.ContentType" >
-		insert into kjuns_content_type (id,name,create_by,create_date,data_flag,update_by,update_date) 
-		values(#{id},#{name},#{createBy},#{createDate},1,#{updateBy},#{updateDate})
+		insert into kjuns_content_type (id,name,sort_index,create_by,create_date,data_flag,update_by,update_date) 
+		values(#{id},#{name},#{sortIndex},#{createBy},#{createDate},1,#{updateBy},#{updateDate})
 	</insert>
 	
 	<update id="updateType" parameterType="com.kjuns.model.ContentType">
-		update kjuns_content_type set name = #{name}, update_by = #{updateBy}, update_date = #{updateDate} where id = #{id}
+		update kjuns_content_type set name = #{name}, sort_index = #{sortIndex}, update_by = #{updateBy}, update_date = #{updateDate} where id = #{id}
 	</update>
 	
 </mapper>

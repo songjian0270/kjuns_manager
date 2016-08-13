@@ -130,7 +130,9 @@
 			<table class="formtable">
 				<tr>
 					<td class="w100">手机号码</td>
-					<td><input name="mobilePhone" id="mobilePhone" type="text" class="dfinput w200" value="${userInfo.mobilePhone}" maxlength="12" /></td>
+					<td><input name="mobilePhone" id="mobilePhone" type="text" class="dfinput w200" value="${userInfo.mobilePhone}" maxlength="11" 
+					
+					onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
 				</tr>
 				<tr>
 					<td class="w100">昵称</td>

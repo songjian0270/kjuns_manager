@@ -74,10 +74,13 @@
 				/section/**=perms["内容管理"]
 				/news/**=perms["内容管理"]
 				/video/**=perms["内容管理"]
+				/type/**=perms["内容管理"]
+				/banner/**=perms["内容管理"]
 				/images/**=perms["内容管理"]
 				/user/**=perms["用户管理"]
 				/faq/**=perms["用户管理"]
-				
+				/issuer/**=perms["用户管理"]
+				/repor/**=perms["用户管理"]
                 <!-- 其他资源需要认证 -->  
                 /** = authc  
             </value>  

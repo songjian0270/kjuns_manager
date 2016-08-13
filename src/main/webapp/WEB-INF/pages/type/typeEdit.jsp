@@ -44,6 +44,12 @@
 					<td><input name="name" id="name" type="text" class="dfinput w200" value="${type.name}" maxlength="12" /></td>
 				</tr>
 				<tr>
+					<td class="w100">序号</td>
+					<td><input name="sortIndex" id="sortIndex" type="text" class="dfinput w200" value="${type.sortIndex}" maxlength="3" 
+					
+					onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" /></td>
+				</tr>
+				<tr>
 					<td></td>
 					<td><input name="" type="submit" class="btn" value="确认保存" onclick="return onSave()" /></td>
 				</tr>

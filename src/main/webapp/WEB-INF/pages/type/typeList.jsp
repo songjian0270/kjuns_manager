@@ -93,8 +93,8 @@
 		<table class="tablelist">
 			<thead>
 				<tr>
-					<th>标签名称</th>
-					<!-- <th>标签地址</th> -->
+					<th>类别名称</th>
+					<th>序号</th>
 					<th>创建时间</th>
 					<th>操作</th>
 				</tr>
@@ -103,6 +103,7 @@
 				<c:forEach items="${page.list}" var="type">
 					<tr>
 						<td>${type.name}</td>
+						<td>${type.sortIndex}</td>
 						<td>${type.createDate}</td>
 						<td>
 							<a href="type/toEdit?id=${type.id}" class="tablelink">修改</a>

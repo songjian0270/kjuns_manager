@@ -107,7 +107,7 @@
 					<tr>
 						<td>${user.mobilePhone}</td>
 						<td>${user.nickName}</td>
-						<td>${user.sex}</td>
+						<td><c:if test="${user.sex==0 }">女</c:if><c:if test="${user.sex==1 }">男</c:if></td>
 						<td>${user.automaticThoughts}</td>
 						<td>${user.location}</td>
 						<td>${user.faceSrc}</td>
