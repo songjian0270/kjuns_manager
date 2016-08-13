@@ -15,7 +15,7 @@
 	
 	<select id="queryTypeList" resultType="com.kjuns.model.ContentType">
 		SELECT id, name, sort_index sortIndex,create_by createBy,create_date createDate 
-		FROM kjuns_content_type where data_flag = 1 
+		FROM kjuns_content_type where data_flag = 1
 		<if test="name != null and name != ''">
 			and name like CONCAT('%',#{name},'%')
 		</if>
@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="querySelectList" resultType="map">
-		SELECT id, name FROM kjuns_content_type where data_flag = 1 
+		SELECT id, name FROM kjuns_content_type where (data_flag = 1 or data_flag =2)
 		order by create_date 
 	</select>
 	

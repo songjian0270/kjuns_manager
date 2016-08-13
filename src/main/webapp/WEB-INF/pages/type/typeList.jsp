@@ -40,7 +40,7 @@
 		}
 		
 		function gotoPage(pageNumber) {
-			location.href = "${basePath}/type/typeList?pageNumber=" + pageNumber;
+			location.href = "${basePath}/type/list?pageNumber=" + pageNumber;
 		}
 		
 		function onDelete(id){

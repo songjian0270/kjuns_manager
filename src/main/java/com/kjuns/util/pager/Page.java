@@ -185,12 +185,7 @@ public class Page implements Serializable {
 	}
 
 	public Integer getStart() {
-		//return start = this.getPageResult() * this.getPageSize();
-		if(this.pageInvertedIndex == 0){
-			return start = 0;
-		}else{
-			return start = (this.getTotalCount() - this.pageInvertedIndex) + 1;	
-		}
+		return start = this.getPageResult() * this.getPageSize();
 	}
 
 	public void setStart(Integer start) {
