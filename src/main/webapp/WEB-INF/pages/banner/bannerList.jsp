@@ -72,7 +72,7 @@
 			</div>
 		</div>
 		
-		<form action="tag/list" id="myForm">
+		<form action="banner/list" id="myForm">
 			<input type="hidden" name="pageNumber" id="pageNumber" value="${page.pageNumber }"/>
 			
 			<div class="ftarea">
