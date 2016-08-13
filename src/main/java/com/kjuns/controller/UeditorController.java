@@ -84,7 +84,7 @@ public class UeditorController extends BaseController {
 		try {
 			multipartFile.transferTo(targetFile);
 			QiNiuHelper.getInstance().coverUpload(path+"/"+fileName,  qnpath);
-			targetFile.delete();
+			//targetFile.delete();
 			state = "SUCCESS";
 		} catch (Exception ex) {
 			logger.error("uploadImg >>> {}", ex.getMessage());

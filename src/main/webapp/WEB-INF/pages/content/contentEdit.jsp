@@ -212,13 +212,13 @@
 		<div class="formtitle">
 			<span>编辑内容</span>
 		</div>
-		<form action="content/addContent">
+		<form action="content/addContent" method="post">
 			<input type="hidden" value="${content.id}" name="id" />
 			<input type="hidden" value="${content.sectionId}" name="sectionId" />
 			<table class="formtable">
 				<tr>
 					<td class="w100">标题</td>
-					<td><input name="title" id="title" type="text" class="dfinput w200" value="${content.title}" maxlength="12" /></td>
+					<td><input name="title" id="title" type="text" class="dfinput w200" value="${content.title}" /></td>
 				</tr>
 				<tr>
 					<td class="w100">类别</td>
@@ -232,7 +232,7 @@
 				</tr>
 				<tr>
 					<td class="w100">来源</td>
-					<td><input name="source" id="source" type="text" class="dfinput w200" value="${content.source}" maxlength="12" /></td>
+					<td><input name="source" id="source" type="text" class="dfinput w200" value="${content.source}" /></td>
 				</tr>
 				<tr>
 					<td class="w100">标签</td>
@@ -260,7 +260,7 @@
 				</tr>
 		<%-- 		<tr>
 					<td class="w100">来源超链</td>
-					<td><input name="sourceUrl" id="sourceUrl" type="text" class="dfinput w200" value="${news.sourceUrl}" maxlength="12" /></td>
+					<td><input name="sourceUrl" id="sourceUrl" type="text" class="dfinput w200" value="${news.sourceUrl}" /></td>
 				</tr> --%>
 				<tr>
 					<td class="w100">摘要</td>

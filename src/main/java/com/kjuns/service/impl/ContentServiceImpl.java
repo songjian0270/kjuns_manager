@@ -44,6 +44,11 @@ public class ContentServiceImpl implements ContentService {
 		int total = contentMapper.getTotalCount(sectionId, title);
 		List<Content> contents = contentMapper.queryContentList(sectionId, title, page.getStart(), page.getPageSize());
 		for(Content content:contents){
+			if(CommonUtils.notEmpty(content.getSummary())){
+				if(content.getSummary().length() > 50){
+					content.setSummary(content.getSummary().substring(0, 20)+".....");
+				}
+			}
 			if(CommonUtils.notEmpty(content.getMindMap())){
 				content.setMindMap(CommonUtils.getImage(content.getMindMap()));
 			}

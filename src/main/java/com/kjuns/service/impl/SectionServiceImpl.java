@@ -32,6 +32,11 @@ public class SectionServiceImpl implements SectionService {
 		int total = sectionMapper.getTotalCount(title);
 		List<Section> sections = sectionMapper.querySectionList(title, page.getStart(), page.getPageSize());
 		for(Section section:sections){
+			if(CommonUtils.notEmpty(section.getSummary())){
+				if(section.getSummary().length() > 50){
+					section.setSummary(section.getSummary().substring(0, 50)+".....");
+				}
+			}
 			if(CommonUtils.notEmpty(section.getBackground())){
 				section.setBackground(CommonUtils.getImage(section.getBackground()));
 			}

@@ -22,7 +22,7 @@ import com.kjuns.util.CommonUtils;
 import com.kjuns.util.pager.Page;
 
 /**
- * <b>Function: </b>  推荐阅读
+ * <b>Function: </b>  内容
  * @author James
  * @date 2016-07-22
  * @file ContentController.java
@@ -60,7 +60,7 @@ public class ContentController extends BaseController {
 	}
 	
 	/**
-	 * 修改栏目
+	 * 修改内容
 	 * @param id
 	 * @param map
 	 * @return
@@ -79,7 +79,7 @@ public class ContentController extends BaseController {
 	}
 	
 	/**
-	 * 增加栏目
+	 * 增加内容
 	 * @param programa
 	 * @param map
 	 * @return
@@ -90,13 +90,13 @@ public class ContentController extends BaseController {
 		content.setCreateBy(my.getId());
 		content.setUpdateBy(my.getId());
 		if (contentService.addContent(content)== -1) {
-			map.addAttribute("message", "栏目名称已存在");
+			map.addAttribute("message", "名称已存在");
 		}
 		return list(content.getSectionId(), null, 1, map);
 	}
 	
 	/**
-	 * 删除专栏
+	 * 删除内容
 	 * @param programa
 	 * @param map
 	 * @return

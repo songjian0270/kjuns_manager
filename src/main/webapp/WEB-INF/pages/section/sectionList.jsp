@@ -104,11 +104,11 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="section">
 					<tr>
-						<td>${section.title}</td>
-						<td>${section.summary}</td>
-						<td><img src="${section.thumbnail}" height="20px" width="20px"/></td>
-						<td><img src="${section.background}" height="20px" width="20px"/></td>
-						<td>${section.createDate}</td>
+						<td width="400px">${section.title}</td>
+						<td width="800px">${section.summary}</td>
+						<td width="60px" align="center"><img src="${section.thumbnail}" height="20px" width="20px"/></td>
+						<td width="60px" align="center"><img src="${section.background}" height="20px" width="20px"/></td>
+						<td width="200px">${section.createDate}</td>
 						<td>
 							<a href="section/toEdit?id=${section.id}" class="tablelink">修改</a>
 							<a href="content/list?sectionId=${section.id}&pageNumber=1" class="tablelink">栏目列表</a>
