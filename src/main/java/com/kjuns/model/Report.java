@@ -1,10 +1,10 @@
 package com.kjuns.model;
 
-public class Report extends BaseModel{
+public class Report extends Model{
 	
 	private String contentId;
 	
-	private String contentType;
+	private int contentType = 99;
 	
 	private String content;
 	
@@ -20,11 +20,11 @@ public class Report extends BaseModel{
 		this.contentId = contentId;
 	}
 
-	public String getContentType() {
+	public int getContentType() {
 		return contentType;
 	}
 
-	public void setContentType(String contentType) {
+	public void setContentType(int contentType) {
 		this.contentType = contentType;
 	}
 

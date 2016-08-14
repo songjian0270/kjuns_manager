@@ -75,15 +75,19 @@
 						<td class="w100">举报类型</td>
 						<td>
 							<select name="contentType">
+								<option value="99" <c:if test="${report.contentType==99 }">selected=selected</c:if>>请选择</option>
 								<option value="0" <c:if test="${report.contentType==0}">selected=selected</c:if>>内容</option>
 								<option value="1" <c:if test="${report.contentType==1}">selected=selected</c:if>>评论</option>
+								<option value="2" <c:if test="${report.contentType==2}">selected=selected</c:if>>阵营内容</option>
+								<option value="3" <c:if test="${report.contentType==3}">selected=selected</c:if>>阵营评论</option>
 							</select>
 						</td>
 						<td class="w100">状态</td>
 						<td>
 							<select name="dataFlag">
+								<option value="" <c:if test="${report.dataFlag=='' }">selected=selected</c:if>>请选择</option>
 								<option value="0" <c:if test="${report.dataFlag==0}">selected=selected</c:if>>已处理</option>
-								<option value="1" <c:if test="${report.dataFlag==0}">selected=selected</c:if>>未处理</option>
+								<option value="1" <c:if test="${report.dataFlag==1}">selected=selected</c:if>>未处理</option>
 							</select>
 						</td>
 					</tr>
@@ -114,7 +118,7 @@
 						</td>
 						<td>${report.content}</td>
 						<td>${report.createName}</td>
-						<td>${report.createCreate}</td>
+						<td>${report.createDate}</td>
 						<td>
 							<c:if test="${report.dataFlag == 1}">
 								<a href="javascript:void(0);" onclick="onDelete('${report.id}','${report.contentId}','${report.contentType}')" class="tablelink">下架</a> 

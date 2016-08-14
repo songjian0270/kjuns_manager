@@ -76,5 +76,9 @@ public class CommonConstants {
 	public static final String QQ = "QQ";
 	public static final String WX = "WX";
 	public static final String WB = "WB";
+	
+	public static final String KJUNS_CONTENT_COMMENTS = "kjuns_content_comments";
+	
+	public static final String KJUNS_CAMP_COMMENTS = "kjuns_camp_comments";
 
 }

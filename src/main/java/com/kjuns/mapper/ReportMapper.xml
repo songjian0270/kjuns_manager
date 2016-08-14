@@ -3,23 +3,24 @@
 <mapper namespace="com.kjuns.mapper.ReportMapper">
 
 	<select id="getTotalCount" resultType="int" parameterType="com.kjuns.model.Report">
-		SELECT count(*) FROM kjuns_report where data_flag = 1
-		<if test="contentType != null and contentType != ''">
-			and report_type like CONCAT('%',#{contentType},'%')
+		SELECT count(*) FROM kjuns_report where 1=1 
+		<if test="contentType != null and contentType != 99">
+			and report_type = #{contentType}
 		</if>
 		<if test="dataFlag != null and dataFlag != ''">
-			and data_flag like CONCAT('%',#{dataFlag},'%')
+			and data_flag  = #{dataFlag}
 		</if>
 	</select>
 	
 	<select id="queryReportList" resultType="com.kjuns.model.Report">
-		SELECT report_id contentId, report_type contentType, user_id userId,create_by createBy,create_date createDate 
-		FROM kjuns_report where data_flag = 1 
-		<if test="contentType != null and contentType != ''">
-			and report_type like CONCAT('%',#{contentType},'%')
+		SELECT id,report_id contentId, report_type contentType, user_id userId,create_by createBy,create_date createDate 
+		,data_flag dataFlag
+		FROM kjuns_report where 1=1 
+		<if test="contentType != null and contentType != 99">
+			and report_type = #{contentType}
 		</if>
 		<if test="dataFlag != null and dataFlag != ''">
-			and data_flag like CONCAT('%',#{dataFlag},'%')
+			and data_flag  = #{dataFlag}
 		</if>
 		order by create_date desc limit #{pageNo},#{pageSize}
 	</select>
