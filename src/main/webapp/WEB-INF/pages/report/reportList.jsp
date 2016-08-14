@@ -115,6 +115,8 @@
 						<td>
 							<c:if test="${report.contentType==0}">内容</c:if>
 							<c:if test="${report.contentType==1}">评论</c:if>
+							<c:if test="${report.contentType==2}">阵营内容</c:if>
+							<c:if test="${report.contentType==3}">阵营评论</c:if>
 						</td>
 						<td>${report.content}</td>
 						<td>${report.createName}</td>

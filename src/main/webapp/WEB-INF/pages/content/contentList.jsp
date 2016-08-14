@@ -43,10 +43,17 @@
 			location.href = "${basePath}/content/contentList?pageNumber=" + pageNumber;
 		}
 		
-		function onDelete(id){
-			if(confirm("确定要删除吗？")){
-				location.href = "${basePath}/content/delete?id="+id;
+		function onDelete(id, dataFlag){
+			if(dataFlag ==1){
+				if(confirm("确定要删除吗？")){
+					location.href = "${basePath}/content/delete?id="+id+"&dataFlag=" +dataFlag;
+				}				
+			}else{
+				if(confirm("确定要上架吗？")){
+					location.href = "${basePath}/content/delete?id="+id +"&dataFlag=" +dataFlag;
+				}	
 			}
+
 		}
 		
 		function onNotifi(id){
@@ -126,7 +133,12 @@
 						<td>
 							<a href="content/toEdit?id=${content.id}&sectionId=${sectionId}" class="tablelink">修改</a>
 							<a href="javascript:void(0);" onclick="onNotifi('${content.id}')" class="tablelink">推送</a>
-							<a href="javascript:void(0);" onclick="onDelete('${content.id}')" class="tablelink">删除</a> 
+							
+							<c:if test="${content.dataFlag==2}">
+								<a href="javascript:void(0);" onclick="onDelete('${content.id}',1)" class="tablelink">上架</a> 
+							</c:if>
+							
+							<a href="javascript:void(0);" onclick="onDelete('${content.id}',0)" class="tablelink">删除</a> 
 						</td>
 					</tr>
 				</c:forEach>

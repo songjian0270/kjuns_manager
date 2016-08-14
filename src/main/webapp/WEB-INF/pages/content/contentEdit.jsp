@@ -423,7 +423,7 @@
     </div>
     
     <!--弹出内容层-->
-	<div class="tip-ctent" style="width: 550px" id="relatedArticles-iframe">
+	<div class="tip-ctent" style="width: 700px" id="relatedArticles-iframe">
     	<div class="tiptop"><span id="windowSapn">推荐阅读</span></div>
       	<div class="tipinfo">
 		 	<iframe id="myRelatedArticlesFrame" frameborder="0" src="content/relatedArticles/list?pageNumber=1"  style="width: 100%; height: 550px;"></iframe>  

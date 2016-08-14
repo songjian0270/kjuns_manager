@@ -7,7 +7,7 @@
 	</select>
 
 	<select id="getTotalCount" resultType="int">
-		SELECT count(*) FROM kjuns_content where data_flag = 1 
+		SELECT count(*) FROM kjuns_content where (data_flag = 1  or data_flag =2)
 		<if test="sectionId != null and sectionId != ''">
 			and section_id = #{sectionId}
 		</if>
@@ -17,9 +17,9 @@
 	</select>
 	
 	<select id="queryContentList" resultType="com.kjuns.model.Content">
-		SELECT id, title, subhead, summary, source, thumbnail, mind_map mindMap, content, 
+		SELECT id, title, subhead, summary, source, thumbnail, mind_map mindMap, content, data_flag dataFlag, 
 		create_by createBy,create_date createDate ,section_id sectionId,type_id type,isTop,isHot,
-		isDepth,isTease,user_id issuers FROM kjuns_content where data_flag = 1
+		isDepth,isTease,user_id issuers FROM kjuns_content where (data_flag = 1  or data_flag =2)
 		<if test="sectionId != null and sectionId != ''">
 			and section_id = #{sectionId}
 		</if>
@@ -30,19 +30,19 @@
 	</select>
 	
 	<select id="selectById" parameterType="String" resultType="com.kjuns.model.Content">
-		SELECT id, title, subhead, summary, source, mind_map mindMap, thumbnail, content,
+		SELECT id, title, subhead, summary, source, mind_map mindMap, thumbnail, content,data_flag dataFlag, 
 		create_by createBy,create_date createDate,type_id type,isTop,user_id issuers,
 		isHot,isDepth,isTease FROM kjuns_content where id=#{0}
 	</select>
 	
 	<select id="deleteContent" parameterType="com.kjuns.model.Content">
-		update kjuns_content set data_flag = 0, update_by = #{updateBy}, update_date = #{updateDate}  where id = #{id}
+		update kjuns_content set data_flag = #{dataFlag}, update_by = #{updateBy}, update_date = #{updateDate}  where id = #{id}
 	</select>
 	
 	<insert id="addContent" parameterType="com.kjuns.model.Content" >
 		insert into kjuns_content (id,title,subhead,summary,source, mind_map, content,thumbnail,create_by,create_date,data_flag,
 		update_by,update_date,section_id,type_id,isTop,isHot,isDepth,isTease,user_id) values(#{id},#{title},#{subhead},#{summary},
-		#{source},#{mindMap},#{content},#{thumbnail},#{createBy},#{createDate},1,#{updateBy},#{updateDate},#{sectionId},#{type},
+		#{source},#{mindMap},#{content},#{thumbnail},#{createBy},#{createDate},2,#{updateBy},#{updateDate},#{sectionId},#{type},
 		#{isTop},#{isHot},#{isDepth},#{isTease},#{issuers})
 	</insert>
 	

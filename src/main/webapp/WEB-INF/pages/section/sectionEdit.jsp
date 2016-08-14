@@ -291,7 +291,11 @@
 		function myIssuers() {  
 			$("#issuer-iframe").show();
 	    } 
-
+		
+		function closeCancel(){
+			$("#issuer-iframe").hide();
+		}
+		
 		function closeIssuers(val, name){
 			//var val = $(window.frames["myTagFrame"].document).find("#tags").val();
 			$("#issuer-iframe").hide();
