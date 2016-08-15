@@ -43,14 +43,14 @@
 			location.href = "${basePath}/user/info/list?pageNumber=" + pageNumber;
 		}
 		
-		function onDelete(id, isf){
+		function onDelete(id, accountId, isf){
 			if(isf==0){
 				if(confirm("确定封号吗？")){
-					location.href = "${basePath}/user/info/delete?id="+id;
+					location.href = "${basePath}/user/info/delete?id="+id+"&accountId="+accountId+"&dataFlag="+isf;
 				}
 			}else{
 				if(confirm("确定解封吗？")){
-					location.href = "${basePath}/user/info/delete?id="+id;
+					location.href = "${basePath}/user/info/delete?id="+id+"&accountId="+accountId+"&dataFlag="+isf;
 				}
 			}
 		}
@@ -113,10 +113,10 @@
 						<td>${user.faceSrc}</td>
 						<td>
 							<c:if test="${user.dataFlag==1 }">
-								<a href="javascript:void(0);" onclick="onDelete('${user.id}',0)" class="tablelink">封号</a> 
+								<a href="javascript:void(0);" onclick="onDelete('${user.id}','${user.accountId}',0)" class="tablelink">封号</a> 
 							</c:if>
 							<c:if test="${user.dataFlag==0 }">
-								<a href="javascript:void(0);" onclick="onDelete('${user.id}',1)" class="tablelink">解封</a> 
+								<a href="javascript:void(0);" onclick="onDelete('${user.id}','${user.accountId}',1)" class="tablelink">解封</a> 
 							</c:if>
 						</td>
 					</tr>

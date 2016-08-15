@@ -36,6 +36,11 @@
 			}
 			return true;
 		}
+		
+		function tian(){
+			$('#url').val("kanjunshi://content/id=");
+			
+		}
 	</script>
 	
 	<script type="text/javascript">
@@ -142,7 +147,8 @@
 				</tr>
 				<tr>
 					<td class="w100">链接地址</td>
-					<td><input name="url" id="url" type="text" class="dfinput w200" value="${banner.url}" maxlength="100" /></td>
+					<td><input name="url" id="url" type="text" class="dfinput w200" value="${banner.url}" maxlength="100" />
+					<input type="button"  value="填充" onclick="tian()" style="display: inline;"/><span style="color: red;display: inline;">例如:kanjunshi://content/id=444444444444</span></td>
 				</tr>
 				<tr>
 					<td class="w100">内容</td>

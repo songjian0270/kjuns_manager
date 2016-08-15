@@ -1,6 +1,6 @@
 package com.kjuns.model;
 
-public class UserComment extends Model {
+public class UserComment extends Model{
 
 	private String userId;
 	

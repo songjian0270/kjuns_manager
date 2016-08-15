@@ -14,10 +14,10 @@
 	</select>
 	
 	<select id="queryUserInfoList" resultType="com.kjuns.model.UserInfo">
-		SELECT info.mobile_phone mobilePhone,info.face_src faceSrc,info.sex,info.location location,account.data_flag dataFlag,
+		SELECT info.id,info.mobile_phone mobilePhone,info.face_src faceSrc,info.sex,info.location location,account.data_flag dataFlag,
 		info.nick_name nickName,account.id accountId, info.create_by createBy,info.create_date createDate
 		FROM kjuns_user_account account,kjuns_user_info info 
-		where account.data_flag = 1 and info.data_flag = 1 and account.user_id = info.id
+		where info.data_flag = 1 and account.user_id = info.id
 		<if test="nickName != null and nickName != ''">
 			and info.nick_name like CONCAT('%',#{nickName},'%')
 		</if>

@@ -58,7 +58,7 @@
 		UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 		UE.Editor.prototype.getActionUrl = function(action){
 			if(action == 'uploadimage'){
-				return 'http://localhost:8080/kjuns_manager/ueditor/uploadImg.json';
+				return "${basePath}/ueditor/uploadImg.json";
 			}else{
 				return this._bkGetActionUrl.call(this, action);
 			}

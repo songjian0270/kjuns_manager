@@ -106,6 +106,7 @@
 		<table class="tablelist">
 			<thead>
 				<tr>
+					<th>编号</th>
 					<th>标题</th>
 					<th>类别</th>
 					<th>摘要</th>
@@ -119,6 +120,7 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="content">
 					<tr>
+						<td>${content.id}</td>
 						<td>${content.title}</td>
 						<td><!--  0热点1冲突2解放军3美军4图集-->
 							<c:forEach items="${typeList}" var="type">

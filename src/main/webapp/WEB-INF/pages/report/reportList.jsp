@@ -16,6 +16,7 @@
     <script type="text/javascript" charset="utf-8" src="${basePath}/ueditor/lang/zh-cn/zh-cn.js"> </script>
 	<title>Insert title here</title>
 	<script type="text/javascript"> 
+	
 		$(document).ready(function() {
 			$(".click").click(function() {
 				$(".tip").fadeIn(200);
@@ -48,6 +49,23 @@
 				location.href = "${basePath}/report/delete?id="+id+"&contentId="+contentId+"&contentType="+contentType;
 			}
 		}
+		
+		function onDetail(contentId, contentType){
+			$.ajax({
+			     type: 'get',
+			     url: "report/detail.json" ,
+			   	 data: {contentType:contentType,contentId:contentId} ,
+			    success: function(data){
+			    	$(".tipinfo").html(data.content);
+			    	$("#content-iframe").show();
+			    } ,
+			    dataType: 'json'
+			}); 
+		}
+		
+		function close(){
+			$("#content-iframe").hide();
+		}
 	
 	</script>
 
@@ -74,20 +92,21 @@
 					<tr>
 						<td class="w100">举报类型</td>
 						<td>
-							<select name="contentType">
-								<option value="99" <c:if test="${report.contentType==99 }">selected=selected</c:if>>请选择</option>
-								<option value="0" <c:if test="${report.contentType==0}">selected=selected</c:if>>内容</option>
-								<option value="1" <c:if test="${report.contentType==1}">selected=selected</c:if>>评论</option>
-								<option value="2" <c:if test="${report.contentType==2}">selected=selected</c:if>>阵营内容</option>
-								<option value="3" <c:if test="${report.contentType==3}">selected=selected</c:if>>阵营评论</option>
+							<select name="contentTypet">
+								<option value="99" <c:if test="${contentTypet==99 }">selected=selected</c:if>>请选择</option>
+								<option value="0" <c:if test="${contentTypet==0}">selected=selected</c:if>>内容</option>
+								<option value="1" <c:if test="${contentTypet==1}">selected=selected</c:if>>评论</option>
+								<option value="2" <c:if test="${contentTypet==2}">selected=selected</c:if>>阵营内容</option>
+								<option value="3" <c:if test="${contentTypet==3}">selected=selected</c:if>>阵营评论</option>
 							</select>
 						</td>
 						<td class="w100">状态</td>
 						<td>
-							<select name="dataFlag">
-								<option value="" <c:if test="${report.dataFlag=='' }">selected=selected</c:if>>请选择</option>
-								<option value="0" <c:if test="${report.dataFlag==0}">selected=selected</c:if>>已处理</option>
-								<option value="1" <c:if test="${report.dataFlag==1}">selected=selected</c:if>>未处理</option>
+							<select name="dataFlagt">
+								<option value="" <c:if test="${dataFlagt=='' }">selected=selected</c:if>>请选择</option>
+								<option value="0" <c:if test="${dataFlagt==0}">selected=selected</c:if>>已处理</option>
+								<option value="1" <c:if test="${dataFlagt==1}">selected=selected</c:if>>未处理</option>
+								<option value="9999" <c:if test="${dataFlagt==9999}">selected=selected</c:if>>已忽略</option>
 							</select>
 						</td>
 					</tr>
@@ -118,12 +137,18 @@
 							<c:if test="${report.contentType==2}">阵营内容</c:if>
 							<c:if test="${report.contentType==3}">阵营评论</c:if>
 						</td>
-						<td>${report.content}</td>
+						<td><a href="javascript:onDetail('${report.contentId}','${report.contentType}')">查看内容</a></td>
 						<td>${report.createName}</td>
 						<td>${report.createDate}</td>
 						<td>
 							<c:if test="${report.dataFlag == 1}">
 								<a href="javascript:void(0);" onclick="onDelete('${report.id}','${report.contentId}','${report.contentType}')" class="tablelink">下架</a> 
+							</c:if>
+							<c:if test="${report.dataFlag == 1}">
+								<a href="javascript:void(0);" onclick="onDelete('${report.id}','${report.contentId}','9999')" class="tablelink">忽略</a> 
+							</c:if>
+							<c:if test="${report.dataFlag == 9999}">
+								已忽略
 							</c:if>
 							<c:if test="${report.dataFlag == 0}">
 								<span>已处理</span>
@@ -140,11 +165,20 @@
 		</div>
 
 	</div>
+	
+	<!--弹出内容层-->
+	<div class="tip-ctent" style="width: 800px;height:1000px" id="content-iframe">
+    	<div class="tiptop"><span id="windowSapn">推荐阅读</span><a href="javascript:close()"></a></div>
+      	<div class="tipinfo">
 
+        </div>
+    </div>
+    
+    
 	<script type="text/javascript">
 		$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
-
+	
 </body>
 
 </html>

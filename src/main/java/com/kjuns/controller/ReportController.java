@@ -1,12 +1,14 @@
 package com.kjuns.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kjuns.model.Admin;
 import com.kjuns.model.Report;
 import com.kjuns.service.ReportService;
 import com.kjuns.util.pager.Page;
@@ -28,12 +30,17 @@ public class ReportController extends BaseController {
 	private ReportService reportService;
 	
 	@RequestMapping(value="list", method= RequestMethod.GET)
-	public String list(Report report, int pageNumber, ModelMap map) {
+	public String list(Integer contentTypet, String dataFlagt, int pageNumber, ModelMap map) {
+		Report report = new Report();
+		report.setContentType(contentTypet == null ? 99 :contentTypet);
+		report.setDataFlag(dataFlagt);
 		Page page = new Page();
 		page.setPageNumber(pageNumber);
 		page = reportService.queryReportList(report, page);
 		map.addAttribute("page", page);
 		map.addAttribute("report", report);
+		map.addAttribute("contentTypet", contentTypet);
+		map.addAttribute("dataFlagt", dataFlagt);
 		return "report/reportList";
 	}
 	
@@ -44,10 +51,27 @@ public class ReportController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("delete")
-	public String delete(Report report, String id, ModelMap map) {
+	public String delete(Report report,Integer contentTypet, String dataFlagt,
+			String id, ModelMap map, HttpSession session) {
+		if(contentTypet == null ){
+			contentTypet =99;
+		}
+		Admin my = this.getContent(session);
+		report.setCreateBy(my.getId());
+		report.setUpdateBy(my.getId());
 		reportService.deleteReport(report);
-		map.addAttribute("report", report);
-		return list(report, 1, map);
+		map.addAttribute("contentTypet", contentTypet);
+		map.addAttribute("dataFlagt", dataFlagt);
+		report = new Report();
+		report.setContentType(contentTypet);
+		report.setDataFlag(dataFlagt);
+		return list( contentTypet,  dataFlagt, 1, map);
+	}
+	
+	@RequestMapping("detail")
+	public void detail(String contentId, int contentType,ModelMap map){
+		String content = reportService.getDetail(contentId, contentType);
+		map.addAttribute("content", content);
 	}
 	
 }

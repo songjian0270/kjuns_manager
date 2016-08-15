@@ -10,5 +10,7 @@ public interface ReportService extends Serializable {
 	Page queryReportList(Report report, Page page);
 
 	void deleteReport(Report report);
+	
+	String getDetail(String contentId, int contentType);
 
 }

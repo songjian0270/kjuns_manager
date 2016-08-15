@@ -47,6 +47,23 @@ public class ReportServiceImpl implements ReportService {
 		for(Report rpt: reports){
 			UserInfo ui = userInfoMapper.selectById(rpt.getUserId());
 			rpt.setCreateName(ui.getNickName());
+			
+//			if(rpt.getContentType() == 1 || rpt.getContentType() == 3){
+//				String table = "";
+//				if(rpt.getContentType() == 1){
+//					table = CommonConstants.KJUNS_CONTENT_COMMENTS;
+//				}else if(rpt.getContentType() == 3){
+//					table = CommonConstants.KJUNS_CAMP_COMMENTS;
+//				}
+//				UserComment userComment = commentMapper.get(table, rpt.getContentId());
+//				rpt.setContent(userComment.getContent());
+//			}else if(rpt.getContentType() == 0){
+//				Content content = contentMapper.selectById(rpt.getId());
+//				rpt.setContent(content.getContent());
+//			}else if(rpt.getContentType() == 2){
+//				Camp camp = campMapper.selectById(rpt.getId());
+//				rpt.setContent(camp.getContent());
+//			}
 		}
 		page.setTotalCount(total);
 		page.setList(reports);
@@ -55,6 +72,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public void deleteReport(Report report) {
+		report.setDataFlag("0");
 		String dateTime = CommonConstants.DATETIME_SEC.format(new Date());
 		if(report.getContentType() == 1 || report.getContentType() == 3){
 			UserComment userComment = new UserComment();
@@ -79,9 +97,32 @@ public class ReportServiceImpl implements ReportService {
 			camp.setUpdateBy(report.getUpdateBy());
 			camp.setUpdateDate(dateTime);
 			campMapper.deleteCamp(camp);
+		}else if(report.getContentType() == 9999){
+			report.setDataFlag("9999");
 		}
 		reportMapper.deleteReport(report);
 		
+	}
+
+	@Override
+	public String getDetail(String contentId, int contentType) {
+		if(contentType == 1 || contentType== 3){
+			String table = "";
+			if(contentType == 1){
+				table = CommonConstants.KJUNS_CONTENT_COMMENTS;
+			}else if(contentType == 3){
+				table = CommonConstants.KJUNS_CAMP_COMMENTS;
+			}
+			UserComment userComment = commentMapper.get(table, contentId);
+			return userComment.getContent();
+		}else if(contentType == 0){
+			Content content = contentMapper.selectById(contentId);
+			return content.getContent();
+		}else if(contentType== 2){
+			Camp camp = campMapper.selectById(contentId);
+			return camp.getContent();
+		}
+		return null;
 	}
 	
 }

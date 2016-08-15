@@ -27,7 +27,7 @@
 	
 	
 	<select id="deleteReport" parameterType="com.kjuns.model.Report">
-		update kjuns_report set data_flag = 0, update_by = #{updateBy}, update_date = #{updateDate}  where id = #{id}
+		update kjuns_report set data_flag = #{dataFlag}, update_by = #{updateBy}, update_date = #{updateDate}  where id = #{id}
 	</select>
 	
 </mapper>

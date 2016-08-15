@@ -47,6 +47,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void deleteUserInfo(UserInfo userInfo) {
 		UserAccount userAccount = new UserAccount();
+		userAccount.setId(userInfo.getAccountId());
 		userAccount.setUpdateBy(userInfo.getUpdateBy());
 		userAccount.setUpdateDate(userInfo.getUpdateDate());
 		userAccount.setDataFlag(userInfo.getDataFlag());
