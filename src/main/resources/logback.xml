@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="30 seconds">
 
 	<!--日志路径 -->
-	<property name="LOG_HOME" value="/Users/Jack/Documents/kjuns/log" />
+	<property name="LOG_HOME" value="/kjuns-manager/log" />
 
 	<!-- 日志文件输出 -->
 	<appender name="rollingFileOut"
