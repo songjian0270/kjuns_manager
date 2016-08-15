@@ -33,7 +33,33 @@
 		
 		var thumbnailKey = null;
 		
+		// 中文字符判断
+		function getStrLength(str) { 
+		    var len = str.length; 
+		    var reLen = 0; 
+		    for (var i = 0; i < len; i++) {        
+		        if (str.charCodeAt(i) < 27 || str.charCodeAt(i) > 126) { 
+		            // 全角    
+		            reLen += 2; 
+		        } else { 
+		            reLen++; 
+		        } 
+		    } 
+		    return reLen;    
+		}
+		
 		$(function() {
+			
+			var maxCount = 500;  // 最高字数，这个值可以自己配置
+			$("#summary").on('keyup', function() {
+			    var len = getStrLength(this.value);
+			    var residue = maxCount-len;
+			    if(residue < 0){
+			    	$(this).val(this.value.substring(0, maxCount));
+			    	residue = 0;
+			    }
+			    $("#count").html("已输入"+ len +"字符，剩余:" + residue +"字符");
+			})
 		
 			$('.reg-photo-demo').click(function(){
 				$('#thumbnailUpload').click();
@@ -204,7 +230,8 @@
 				</tr>
 				<tr>
 					<td class="w100">摘要</td>
-					<td><textarea rows="50" cols="50" name="summary" id="summary" class="textinput">${section.summary}</textarea></td>
+					<td><textarea rows="50" cols="50" name="summary" id="summary" class="textinput">${section.summary}</textarea>
+					<span id="count" style="color: gray;display: inline;font-size: 10px; margin-left: 20px"></span></td>
 				</tr>
 				<tr>
 					<td class="w100">发布人</td>
