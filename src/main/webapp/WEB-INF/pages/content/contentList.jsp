@@ -45,11 +45,11 @@
 		
 		function onDelete(id, dataFlag){
 			if(dataFlag ==1){
-				if(confirm("确定要删除吗？")){
+				if(confirm("确定要上架吗？")){
 					location.href = "${basePath}/content/delete?id="+id+"&dataFlag=" +dataFlag;
 				}				
 			}else{
-				if(confirm("确定要上架吗？")){
+				if(confirm("确定要删除吗？")){
 					location.href = "${basePath}/content/delete?id="+id +"&dataFlag=" +dataFlag;
 				}	
 			}
