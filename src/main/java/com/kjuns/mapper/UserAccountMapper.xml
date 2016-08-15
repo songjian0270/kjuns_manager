@@ -3,7 +3,7 @@
 <mapper namespace="com.kjuns.mapper.UserAccountMapper">
 
 	<select id="deleteUserAccount" parameterType="com.kjuns.model.UserAccount">
-		update kjuns_user_account set data_flag = #{data_flag}, update_by = #{updateBy}, update_date = #{updateDate}  
+		update kjuns_user_account set data_flag = #{dataFlag}, update_by = #{updateBy}, update_date = #{updateDate}  
 		where id = #{id}
 	</select>
 	
