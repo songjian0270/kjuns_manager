@@ -84,7 +84,51 @@ public class UeditorController extends BaseController {
 		try {
 			multipartFile.transferTo(targetFile);
 			QiNiuHelper.getInstance().coverUpload(path+"/"+fileName,  qnpath);
-			//targetFile.delete();
+			targetFile.delete();
+			state = "SUCCESS";
+		} catch (Exception ex) {
+			logger.error("uploadImg >>> {}", ex.getMessage());
+			state = "FAIL";
+		}
+		
+		model.addAttribute("original", fileName);
+		model.addAttribute("url", qnpath);
+		model.addAttribute("title", "");
+		model.addAttribute("state", state);
+ 		return model;
+	}
+	
+	/**
+	 * 本服务器上传
+	 * @param multipartFile
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/uploadVideo")
+	public Model uploadVideo(@RequestParam("upfile")MultipartFile multipartFile, Model model, 
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		Admin admin = getContent(session);
+		Random random =new Random();
+		String date = CommonConstants.DATE_STR.format(new Date());
+		String path = request.getSession().getServletContext().getRealPath("ueditor/upload") + "/video/" + date + "/";
+		String fileName = multipartFile.getOriginalFilename();
+		String extName = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+		fileName =  CommonConstants.DATETIME_SEC_STR.format(new Date()) + random.nextInt(10000) + extName;
+		String state = "";
+		File targetFile = new File(path, fileName);
+		if(!targetFile.exists()){
+			targetFile.mkdirs();
+		}
+		String qnpath = date + "/video/" + admin.getId()  + "/" + fileName;
+		try {
+			multipartFile.transferTo(targetFile);
+			QiNiuHelper.getInstance().coverUpload(path+"/"+fileName,  qnpath);
+			targetFile.delete();
 			state = "SUCCESS";
 		} catch (Exception ex) {
 			logger.error("uploadImg >>> {}", ex.getMessage());

@@ -59,6 +59,8 @@
 		UE.Editor.prototype.getActionUrl = function(action){
 			if(action == 'uploadimage'){
 				return "${basePath}/ueditor/uploadImg.json";
+			}else if(action == 'uploadvideo'){
+				return "${basePath}/ueditor/uploadVideo.json";
 			}else{
 				return this._bkGetActionUrl.call(this, action);
 			}
