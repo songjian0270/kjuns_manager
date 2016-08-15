@@ -34,7 +34,23 @@
 	</style>
 	
 	<script type="text/javascript">
-		UE.getEditor("editor");
+	UE.getEditor("editor" ,{
+	    toolbars: [
+					[
+					 'fullscreen', 'source', '|',
+					 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 
+					 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+					 'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+					 'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+					 'directionalityltr', 'directionalityrtl', 'indent', '|',
+					 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+					 'link', 'unlink', 'anchor', '|', 'simpleupload', 'insertimage', 'emotion', 'insertvideo', 'music', '|',
+					 'print', 'preview', 'searchreplace', 'drafts', 'help'
+					]
+	           ],
+	           autoHeightEnabled: true,
+	           autoFloatEnabled: true
+	       });
 		UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 		UE.Editor.prototype.getActionUrl = function(action){
 			if(action == 'uploadimage'){
