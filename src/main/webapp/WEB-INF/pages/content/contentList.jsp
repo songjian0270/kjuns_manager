@@ -40,7 +40,7 @@
 		}
 		
 		function gotoPage(pageNumber) {
-			location.href = "${basePath}/content/contentList?pageNumber=" + pageNumber;
+			location.href = "${basePath}/content/list?pageNumber=" + pageNumber;
 		}
 		
 		function onDelete(id, dataFlag){

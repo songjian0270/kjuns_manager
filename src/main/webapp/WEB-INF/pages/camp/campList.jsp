@@ -40,7 +40,7 @@
 		}
 		
 		function gotoPage(pageNumber) {
-			location.href = "${basePath}/camp/campList?pageNumber=" + pageNumber;
+			location.href = "${basePath}/camp/list?pageNumber=" + pageNumber;
 		}
 		
 		function onDelete(id){
