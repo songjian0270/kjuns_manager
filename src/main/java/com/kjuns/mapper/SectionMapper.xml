@@ -14,16 +14,16 @@
 	</select>
 	
 	<select id="querySectionList" resultType="com.kjuns.model.Section">
-		SELECT id, title, summary, background, thumbnail, create_by createBy,create_date createDate,isTop 
+		SELECT id, title, summary, background, thumbnail, create_by createBy,create_date createDate,isTop ,sort_index sortIndex
 		,user_id issuers FROM kjuns_section where data_flag = 1 
 		<if test="title != null and title != ''">
 			and title like CONCAT('%',#{title},'%')
 		</if>
-		order by create_date desc limit #{pageNo},#{pageSize}
+		order by sort_index desc,create_date desc limit #{pageNo},#{pageSize}
 	</select>
 	
 	<select id="selectById" parameterType="String" resultType="com.kjuns.model.Section">
-		SELECT id, title, summary, background, thumbnail, create_by createBy,create_date createDate,isTop,user_id issuers FROM kjuns_section where id=#{0}
+		SELECT id, title, summary, background, thumbnail, create_by createBy,create_date createDate,isTop,user_id issuers,sort_index sortIndex FROM kjuns_section where id=#{0}
 	</select>
 	
 	<select id="deleteSection" parameterType="com.kjuns.model.Section">
@@ -31,12 +31,12 @@
 	</select>
 	
 	<insert id="addSection" parameterType="com.kjuns.model.Section" >
-		insert into kjuns_section (id,title,summary,background,thumbnail,create_by,create_date,data_flag,update_by,update_date,isTop, user_id) 
-		values(#{id},#{title},#{summary},#{background},#{thumbnail},#{createBy},#{createDate},1,#{updateBy},#{updateDate},#{isTop},#{issuers})
+		insert into kjuns_section (id,title,summary,background,thumbnail,create_by,create_date,data_flag,update_by,update_date,isTop, user_id,sort_index) 
+		values(#{id},#{title},#{summary},#{background},#{thumbnail},#{createBy},#{createDate},1,#{updateBy},#{updateDate},#{isTop},#{issuers},#{sortIndex})
 	</insert>
 	
 	<update id="updateSection" parameterType="com.kjuns.model.Section">
-		update kjuns_section set title = #{title}, summary=#{summary},background=#{background},thumbnail=#{thumbnail} , user_id =#{issuers},
+		update kjuns_section set title = #{title}, summary=#{summary},background=#{background},thumbnail=#{thumbnail} , user_id =#{issuers},sort_index=#{sortIndex},
 		update_by = #{updateBy}, update_date = #{updateDate} , isTop=#{isTop} where id = #{id}
 	</update>
 	
