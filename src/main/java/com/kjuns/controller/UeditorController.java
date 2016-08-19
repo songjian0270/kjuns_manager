@@ -127,7 +127,7 @@ public class UeditorController extends BaseController {
 		String qnpath = date + "/video/" + admin.getId()  + "/" + fileName;
 		try {
 			multipartFile.transferTo(targetFile);
-			QiNiuHelper.getInstance().coverUpload(path+"/"+fileName,  qnpath);
+			QiNiuHelper.getInstance().coverUploadWithVideo(path+"/"+fileName,  qnpath);
 			targetFile.delete();
 			state = "SUCCESS";
 		} catch (Exception ex) {

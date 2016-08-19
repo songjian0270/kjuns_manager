@@ -6,6 +6,7 @@ import com.qiniu.http.Response;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
+import com.qiniu.util.UrlSafeBase64;
 
 public class QiNiuHelper {
 
@@ -53,6 +54,14 @@ public class QiNiuHelper {
 	         .put("callbackBody", "filename=$(fname)&filesize=$(fsize)"));
 	}
 
+	//设置callbackUrl以及callbackBody，七牛将文件名和文件大小回调给业务服务器
+	public String getTokenAndMakeThumb(String key){
+			return auth.uploadToken(SysConf.QN_BUCKET_NAME, key, 3600, new StringMap()
+		         .put("persistentOps","vsample/jpg/ss/1/t/1/pattern/"+UrlSafeBase64.encodeToString(key+"-$(count)"))
+		         .put("persistentPipeline", "video_thumb_pipeline")
+					);
+	}
+	
 	/**
 	 * 简单上传
 	 * @param filePath
@@ -84,6 +93,29 @@ public class QiNiuHelper {
 	public StringMap coverUpload(String filePath, String key) {
 		try {
 			Response res = uploadManager.put(filePath, key, getUpToken(key));
+			return res.jsonToMap();
+		} catch (QiniuException e) {
+			Response r = e.response;
+			try {
+				// 响应的文本信息
+				System.out.println(r.bodyString());
+			} catch (QiniuException e1) {
+				// ignore
+			}
+		}
+		return null;
+	}
+	
+
+	/**
+	 * 覆盖上传
+	 * @param filePath
+	 * @param key
+	 * @return
+	 */
+	public StringMap coverUploadWithVideo(String filePath, String key) {
+		try {
+			Response res = uploadManager.put(filePath, key, getTokenAndMakeThumb(key));
 			return res.jsonToMap();
 		} catch (QiniuException e) {
 			Response r = e.response;
