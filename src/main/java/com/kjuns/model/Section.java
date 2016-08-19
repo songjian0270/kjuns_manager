@@ -15,6 +15,8 @@ public class Section extends Model{
 	private String issuers;
 	
 	private String issuersName;
+	
+	private int sortIndex;
 
 	public String getTitle() {
 		return title;
@@ -70,6 +72,14 @@ public class Section extends Model{
 
 	public void setIssuersName(String issuersName) {
 		this.issuersName = issuersName;
+	}
+
+	public int getSortIndex() {
+		return sortIndex;
+	}
+
+	public void setSortIndex(int sortIndex) {
+		this.sortIndex = sortIndex;
 	}
 	
 }

@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="${basePath}/js/jquery.js"></script>
 	<script type="text/javascript" charset="utf-8" src="${basePath}/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="${basePath}/ueditor/ueditor.all.js"> </script>
+  	<script type="text/javascript" charset="utf-8" src="${basePath}/ueditor/ueditor.parse.js"> </script>
     <script type="text/javascript" charset="utf-8" src="${basePath}/ueditor/lang/zh-cn/zh-cn.js"> </script>
 	<script type="text/javascript" src="${basePath}/My97DatePicker/WdatePicker.js"></script>
 	

@@ -42,6 +42,12 @@ public class QiNiuHelper {
 		return auth.uploadToken(SysConf.QN_BUCKET_NAME);
 	}
 	
+	//缩略图。
+//	private String getUpTokenOps(String key) {
+//		return auth.uploadToken(SysConf.QN_BUCKET_NAME, null, 3600, new StringMap().
+//				put("persistentOps", "vsample/jpg/ss/7/t/600/s/480x360/pattern/dmZyYW1lLSQoY291bnQp"));
+//	}
+	
 	//<bucket>:<key>，表示只允许用户上传指定key的文件。在这种格式下文件默认允许“修改”，已存在同名资源则会被本次覆盖。
 	private String getUpToken(String key) {
 		return auth.uploadToken(SysConf.QN_BUCKET_NAME, key);

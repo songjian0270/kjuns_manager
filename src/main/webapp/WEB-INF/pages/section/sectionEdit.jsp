@@ -301,6 +301,12 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="w100">序号</td>
+					<td>
+						<input name="sortIndex" id="sortIndex" type="text" class="dfinput w200" value="${section.sortIndex}" />
+					</td>
+				</tr>
+				<tr>
 					<td class="w100">时间</td>
 					<td><input name="createDate"  id="createDate" type="text" 
 							onclick="WdatePicker()" class="dfinput w200"

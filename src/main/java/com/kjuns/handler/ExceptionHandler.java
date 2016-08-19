@@ -3,6 +3,7 @@ package com.kjuns.handler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,10 @@ public class ExceptionHandler extends BaseController implements
 		} else if (ex instanceof SMSException) {
 			type = "sms";
 			return new ModelAndView("redirect:/exception/reminder?msg=" + msg + "&type=" + type);
-		} else {
+		} else if(ex instanceof MaxUploadSizeExceededException){
+			type = "maxUpload";
+			return new ModelAndView("redirect:/exception/reminder?msg=" + msg + "&type=" + type);
+		}else{
 			return new ModelAndView("redirect:/exception/reminder?msg=" + msg + "&type=");
 		}
 
