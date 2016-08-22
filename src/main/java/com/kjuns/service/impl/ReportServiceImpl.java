@@ -114,7 +114,11 @@ public class ReportServiceImpl implements ReportService {
 				table = CommonConstants.KJUNS_CAMP_COMMENTS;
 			}
 			UserComment userComment = commentMapper.get(table, contentId);
-			return userComment.getContent();
+			if(null != userComment){
+				return userComment.getContent();	
+			}else{
+				return "该记录不存在";
+			}
 		}else if(contentType == 0){
 			Content content = contentMapper.selectById(contentId);
 			return content.getContent();
