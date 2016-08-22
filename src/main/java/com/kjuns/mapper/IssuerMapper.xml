@@ -5,6 +5,23 @@
 	<select id="selectByName" parameterType="String" resultType="int">
 		SELECT count(id) From kjuns_user_info where nick_name = #{nickName}
 	</select>
+	
+	<select id="getStopTotalCount" resultType="int" parameterType="com.kjuns.model.UserInfo">
+		SELECT count(*) FROM kjuns_user_info where data_flag = 2
+		<if test="nickName != null and nickName != ''">
+			and nick_name like CONCAT('%',#{nickName},'%')
+		</if>
+	</select>
+	
+	<select id="queryStopUserInfoList" resultType="com.kjuns.model.UserInfo">
+		SELECT id,mobile_phone mobilePhone,face_src faceSrc,sex,nick_name nickName,create_by createBy,data_flag dataFlag,
+		create_date createDate,TIMESTAMPDIFF(DAY, create_date,CURRENT_TIMESTAMP()) automaticThoughts,location
+		FROM kjuns_user_info where data_flag = 2 
+		<if test="nickName != null and nickName != ''">
+			and nick_name like CONCAT('%',#{nickName},'%')
+		</if>
+		order by create_date desc limit #{pageNo},#{pageSize}
+	</select>
 
 	<select id="getTotalCount" resultType="int" parameterType="com.kjuns.model.UserInfo">
 		SELECT count(*) FROM kjuns_user_info where (data_flag = 2 or data_flag=21)

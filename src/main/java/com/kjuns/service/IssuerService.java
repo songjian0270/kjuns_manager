@@ -9,6 +9,8 @@ public interface IssuerService extends Serializable {
 
 	Page queryIssuerList(String name, Page page);
 	
+	Page queryIssuerStopList(String name, Page page);
+	
 	UserInfo selectById(String id);
 
 	void deleteIssuer(UserInfo userInfo);

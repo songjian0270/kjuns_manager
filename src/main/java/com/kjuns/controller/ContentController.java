@@ -134,7 +134,7 @@ public class ContentController extends BaseController {
 	public String issuerList(UserInfo userInfo, int pageNumber, ModelMap map){
 		Page page = new Page();
 		page.setPageNumber(pageNumber);
-		page = issuerService.queryIssuerList(userInfo.getNickName(), page);
+		page = issuerService.queryIssuerStopList(userInfo.getNickName(), page);
 		map.addAttribute("page", page);
 		map.addAttribute("userInfo", userInfo);
 		return "content/issuerList";

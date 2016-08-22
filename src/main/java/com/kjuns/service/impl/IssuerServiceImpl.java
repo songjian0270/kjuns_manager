@@ -21,6 +21,20 @@ public class IssuerServiceImpl implements IssuerService {
 
 	@Autowired
 	private IssuerMapper issuerMapper;
+	
+	@Override
+	public Page queryIssuerStopList(String nickName, Page page) {
+		int total = issuerMapper.getStopTotalCount(nickName);
+		List<UserInfo> userInfos = issuerMapper.queryStopUserInfoList(nickName, page.getStart(), page.getPageSize());
+		for(UserInfo userInfo:userInfos){
+			if(CommonUtils.notEmpty(userInfo.getFaceSrc())){
+				userInfo.setFaceSrc(CommonUtils.getImage(userInfo.getFaceSrc()));
+			}
+		}
+		page.setTotalCount(total);
+		page.setList(userInfos);
+		return page;
+	}
 
 	@Override
 	public Page queryIssuerList(String nickName, Page page) {
