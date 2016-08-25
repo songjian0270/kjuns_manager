@@ -273,7 +273,7 @@
         conUrl = utils.unhtmlForUrl(conUrl);
 
         $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
-        '<iframe ' +
+        '<iframe class="previewVideo"' +
             ' src="' + conUrl + '"' +
             ' width="' + 420  + '"' +
             ' height="' + 280  + '"' +

@@ -17659,7 +17659,7 @@ UE.plugins['video'] = function (){
             case 'embed':
                 str = '<iframe ' +
                     ' src="' +  utils.html(url) + '" width="' + width  + '" height="' + height  + '"'  + (align ? ' style="float:' + align + '"': '') +
-                    ' ></iframe>';
+                    ' frameborder=0 allowfullscreen></iframe>';
                 break;
             case 'video':
                 var ext = url.substr(url.lastIndexOf('.') + 1);
