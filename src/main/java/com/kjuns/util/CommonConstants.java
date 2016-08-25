@@ -80,5 +80,6 @@ public class CommonConstants {
 	public static final String KJUNS_CONTENT_COMMENTS = "kjuns_content_comments";
 	
 	public static final String KJUNS_CAMP_COMMENTS = "kjuns_camp_comments";
-
+	public static final String KJUNS_IMG_WATER_MARK = "!wm";
+	public static final String KJUNS_IMG_STYLE_MIND = "!mind";
 }

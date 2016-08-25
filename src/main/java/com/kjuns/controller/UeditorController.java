@@ -92,7 +92,7 @@ public class UeditorController extends BaseController {
 		}
 		
 		model.addAttribute("original", fileName);
-		model.addAttribute("url", qnpath);
+		model.addAttribute("url", qnpath +CommonConstants.KJUNS_IMG_WATER_MARK);
 		model.addAttribute("title", "");
 		model.addAttribute("state", state);
  		return model;
