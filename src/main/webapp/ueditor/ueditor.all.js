@@ -17658,7 +17658,7 @@ UE.plugins['video'] = function (){
                 break;
             case 'embed':
                 str = '<iframe ' +
-                    ' src="' +  utils.html(url) + '" width="' + width  + '" height="' + height  + '"'  + (align ? ' style="float:' + align + '"': '') +
+                    ' src="' +  utils.html(url) + '" width="' + 100%  + '" height="' + height  + '"'  + (align ? ' style="float:' + align + '"': '') +
                     ' frameborder=0 allowfullscreen></iframe>';
                 break;
             case 'video':
