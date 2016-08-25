@@ -167,7 +167,7 @@
     function convert_url(url){
         if ( !url ) return '';
         url = utils.trim(url)
-            .replace(/v\.youku\.com\/v_show\/id_([\w\-=]+)\.html/i, 'player.youku.com/player.php/sid/$1/v.swf')
+            .replace(/v\.youku\.com\/v_show\/id_([\w\-=]+)\.html/i, 'player.youku.com/embed/$1')
             .replace(/(www\.)?youtube\.com\/watch\?v=([\w\-]+)/i, "www.youtube.com/v/$2")
             .replace(/youtu.be\/(\w+)$/i, "www.youtube.com/v/$1")
             .replace(/v\.ku6\.com\/.+\/([\w\.]+)\.html.*$/i, "player.ku6.com/refer/$1/v.swf")
@@ -273,12 +273,12 @@
         conUrl = utils.unhtmlForUrl(conUrl);
 
         $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
-        '<embed class="previewVideo" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
+        '<iframe ' +
             ' src="' + conUrl + '"' +
             ' width="' + 420  + '"' +
             ' height="' + 280  + '"' +
-            ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >' +
-        '</embed>';
+            ' >' +
+        '</iframe>';
     }
 
 
