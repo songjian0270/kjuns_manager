@@ -84,7 +84,6 @@
 		}
 		
 		$(function() {
-			
 			var maxCount = 500;  // 最高字数，这个值可以自己配置
 			$("#summary").on('keyup', function() {
 			    var len = getStrLength(this.value);

@@ -114,18 +114,77 @@
      * 将单个视频信息插入编辑器中
      */
     function insertSingle(){
-        var width = $G("videoWidth"),
-            height = $G("videoHeight"),
-            url=$G('videoUrl').value,
-            align = findFocus("videoFloat","name");
-        if(!url) return false;
-        if ( !checkNum( [width, height] ) ) return false;
-        editor.execCommand('insertvideo', {
-            url: convert_url(url),
-            width: width.value,
-            height: height.value,
-            align: align
-        }, isModifyUploadVideo ? 'upload':null);
+    	   var width = $G("videoWidth"),
+           height = $G("videoHeight"),
+           url=$G('videoUrl').value,
+           align = findFocus("videoFloat","name");
+       if(!url) return false;
+       if ( !checkNum( [width, height] ) ) return false;
+       
+       url = utils.trim(url);
+
+       if(/^<iframe/.test(url)){
+           var conUrl = '';
+           if(/src=(\"|\')[^\s(\"|\')]+/i.test(url)){
+               conUrl = url.match(/src=(\"|\')[^\s(\"|\')]+/i)[0].substr(5);
+           }
+           var newIframe = editor.document.createElement("iframe");
+           var div;
+           newIframe.setAttribute("src",/http:\/\/|https:\/\//ig.test(conUrl) ? conUrl : "http://"+conUrl);
+           (((/^[1-9]+[.]?\d*$/g).test(width.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(width.value))) ? newIframe.setAttribute("width",width.value) : "";
+           (((/^[1-9]+[.]?\d*$/g).test(height.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(height.value))) ? newIframe.setAttribute("height",height.value) : "";
+           //newIframe.setAttribute("scrolling","no");
+           newIframe.setAttribute("frameborder","0",0);
+           newIframe.setAttribute("allowfullscreen","allowfullscreen");
+           newIframe.setAttribute("align",align);
+           div = editor.document.createElement("div");
+           div.appendChild(newIframe);
+           console.log(div.innerHTML);
+           editor.execCommand("inserthtml",div.innerHTML);
+       } else if(/http/.test(url)){
+    	   if(url.indexOf(".mp4") > 0){
+    		   var newVideo = editor.document.createElement("video");
+	           var source; var div;
+	           newVideo.setAttribute("src",/http:\/\/|https:\/\//ig.test(url) ? url : "http://"+url);
+	           (((/^[1-9]+[.]?\d*$/g).test(width.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(width.value))) ? newVideo.setAttribute("width",width.value) : "";
+	           (((/^[1-9]+[.]?\d*$/g).test(height.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(height.value))) ? newVideo.setAttribute("height",height.value) : "";
+	           //newIframe.setAttribute("scrolling","no");
+	           newVideo.setAttribute("class", "edui-upload-video  vjs-default-skin   video-js");
+	           newVideo.setAttribute("controls","");
+	           newVideo.setAttribute("preload","none");
+	           newVideo.setAttribute("data-setup","{}");
+	           
+	           source = editor.document.createElement("source");
+	           source.setAttribute("src", /http:\/\/|https:\/\//ig.test(url) ? url : "http://"+url);
+	           source.setAttribute("type", "video/mp4");
+	           newVideo.appendChild(source);
+	           console.log(source.innerHTML);
+	           div = editor.document.createElement("div");
+	           div.appendChild(newVideo);
+		       editor.execCommand("inserthtml",div.innerHTML);
+    	   }else{
+	    	   var newIframe = editor.document.createElement("iframe");
+	           var div;
+	           newIframe.setAttribute("src",/http:\/\/|https:\/\//ig.test(url) ? url : "http://"+url);
+	           (((/^[1-9]+[.]?\d*$/g).test(width.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(width.value))) ? newIframe.setAttribute("width",width.value) : "";
+	           (((/^[1-9]+[.]?\d*$/g).test(height.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(height.value))) ? newIframe.setAttribute("height",height.value) : "";
+	           //newIframe.setAttribute("scrolling","no");
+	           newIframe.setAttribute("frameborder","0",0);
+	           newIframe.setAttribute("allowfullscreen","allowfullscreen");
+	           newIframe.setAttribute("align",align);
+	           div = editor.document.createElement("div");
+	           div.appendChild(newIframe);
+	           console.log(div.innerHTML);
+	           editor.execCommand("inserthtml",div.innerHTML);
+    	   }
+      }else {
+           editor.execCommand('insertvideo', {
+               url: convert_url(url),
+               width: width.value,
+               height: height.value,
+               align: align
+           }, isModifyUploadVideo ? 'upload':null);
+       }
     }
 
     /**
@@ -266,19 +325,39 @@
      * @param url
      */
     function createPreviewVideo(url){
-        if ( !url )return;
+    	 if ( !url )return;
+         url = utils.trim(url);
+         if(/^<iframe/.test(url)){
+             var conUrl = '';
+             if(/src=(\"|\')[^\s(\"|\')]+/i.test(url)){
+                 conUrl = url.match(/src=(\"|\')[^\s(\"|\')]+/i)[0].substr(5);
+             }
+             $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
+             '<iframe class="previewVideo"' +
+                 ' src="' + conUrl + '"' +
+                 ' width="' + 420  + '"' +
+                 ' height="' + 280  + '"' +
+                 ' frameborder=0 allowfullscreen>' +
+             '</iframe>';
+         }else if(/http/.test(url)){
+              $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
+              '<iframe class="previewVideo"' +
+                  ' src="' + url + '"' +
+                  ' width="' + 420  + '"' +
+                  ' height="' + 280  + '"' +
+                  ' frameborder=0 allowfullscreen>' +
+              '</iframe>';
+         }else {
+             var conUrl = convert_url(url);
 
-        var conUrl = convert_url(url);
-
-        conUrl = utils.unhtmlForUrl(conUrl);
-
-        $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
-        '<embed class="previewVideo" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
-            ' src="' + conUrl + '"' +
-            ' width="' + 420  + '"' +
-            ' height="' + 280  + '"' +
-            ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >' +
-        '</embed>';
+             $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
+             '<embed class="previewVideo" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
+                 ' src="' + conUrl + '"' +
+                 ' width="' + 420  + '"' +
+                 ' height="' + 280  + '"' +
+                 ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >' +
+             '</embed>';
+         }
     }
 
 
