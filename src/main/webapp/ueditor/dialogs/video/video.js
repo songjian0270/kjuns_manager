@@ -146,8 +146,8 @@
     		   var newVideo = editor.document.createElement("video");
 	           var source; var div;
 	           newVideo.setAttribute("src",/http:\/\/|https:\/\//ig.test(url) ? url : "http://"+url);
-	           (((/^[1-9]+[.]?\d*$/g).test(width.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(width.value))) ? newVideo.setAttribute("width",width.value) : "";
-	           (((/^[1-9]+[.]?\d*$/g).test(height.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(height.value))) ? newVideo.setAttribute("height",height.value) : "";
+	           (((/^[1-9]+[.]?\d*$/g).test(width.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(width.value))) ? newVideo.setAttribute("width",width.value) : newVideo.setAttribute("width", 420);
+	           (((/^[1-9]+[.]?\d*$/g).test(height.value))||((/^((\d+\.?\d*)|(\d*\.\d+))\%$/).test(height.value))) ? newVideo.setAttribute("height",height.value) : newVideo.setAttribute("height",280);
 	           //newIframe.setAttribute("scrolling","no");
 	           newVideo.setAttribute("class", "edui-upload-video  vjs-default-skin   video-js");
 	           newVideo.setAttribute("controls","");
