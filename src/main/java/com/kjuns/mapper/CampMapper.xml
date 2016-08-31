@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="queryCampList" resultType="com.kjuns.model.Camp">
-		SELECT id, title, content, thumbnail,user_id issuers, create_by createBy,create_date createDate 
+		SELECT id, title, content, thumbnail,user_id issuers, create_by createBy,create_date createDate ,isTop
 		FROM kjuns_camp where data_flag = 1 
 		<if test="title != null and title != ''">
 			and title like CONCAT('%',#{title},'%')
@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="selectById" parameterType="String" resultType="com.kjuns.model.Camp">
-		SELECT id, title, content,thumbnail, user_id issuers, create_by createBy,create_date createDate  FROM kjuns_camp where id=#{0}
+		SELECT id, title, content,thumbnail, user_id issuers, create_by createBy,create_date createDate,isTop  FROM kjuns_camp where id=#{0}
 	</select>
 	
 	<select id="deleteCamp" parameterType="com.kjuns.model.Camp">
@@ -31,12 +31,12 @@
 	</select>
 	
 	<insert id="addCamp" parameterType="com.kjuns.model.Camp" >
-		insert into kjuns_camp (id,title,content,thumbnail,user_id,create_by,create_date,data_flag,update_by,update_date) 
-		values(#{id},#{title},#{content},#{thumbnail},#{issuers},#{createBy},#{createDate},1,#{updateBy},#{updateDate})
+		insert into kjuns_camp (id,title,content,thumbnail,user_id,create_by,create_date,data_flag,update_by,update_date,isTop) 
+		values(#{id},#{title},#{content},#{thumbnail},#{issuers},#{createBy},#{createDate},1,#{updateBy},#{updateDate},#{isTop})
 	</insert>
 	
 	<update id="updateCamp" parameterType="com.kjuns.model.Camp">
-		update kjuns_camp set title = #{title},thumbnail=#{thumbnail},user_id=#{issuers},content=#{content}, update_by = #{updateBy}, update_date = #{updateDate} where id = #{id}
+		update kjuns_camp set title = #{title},thumbnail=#{thumbnail},user_id=#{issuers},content=#{content}, update_by = #{updateBy},isTop=#{isTop} ,update_date = #{updateDate} where id = #{id}
 	</update>
 	
 </mapper>
