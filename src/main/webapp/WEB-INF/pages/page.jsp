@@ -13,7 +13,7 @@
 			共<i class="blue">${page.totalCount}</i>条记录，当前显示第&nbsp;<i class="blue">${page.pageNumber}&nbsp;</i>页，&nbsp;共<i
 				class="blue">&nbsp;${page.pageCount}&nbsp;</i>页
 		</div>
-		<ul class="paginList" style="width: 400px;">
+		<ul class="paginList" style="width: 200px;">
 			<c:if test="${page.pageNumber == 1 }">
 				<a class="nolink">上一页</a>&nbsp;
 				</c:if>
