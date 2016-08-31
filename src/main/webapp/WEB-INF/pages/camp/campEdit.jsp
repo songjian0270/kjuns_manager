@@ -314,7 +314,7 @@
 	</script>
 	
 	<!--弹出内容层-->
-	<div class="tip-ctent" style="width: 550px" id="issuer-iframe">
+	<div class="tip-ctent" style="width: 600px" id="issuer-iframe">
     	<div class="tiptop"><span id="windowSapn">发布人</span></div>
       	<div class="tipinfo">
 		 	<iframe id="myIssuerFrame" frameborder="0" src="content/issuer/list?pageNumber=1"  style="width: 100%; height: 550px;"></iframe>  

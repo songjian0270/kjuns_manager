@@ -459,7 +459,7 @@
 	</script>
     
     <!--弹出内容层-->
-	<div class="tip-ctent" style="width: 550px" id="tag-iframe">
+	<div class="tip-ctent" style="width: 600px" id="tag-iframe">
     	<div class="tiptop"><span id="windowSapn">标签</span></div>
       	<div class="tipinfo">
 		 	<iframe id="myTagFrame" frameborder="0" src="content/tag/list?pageNumber=1"  style="width: 100%; height: 550px;"></iframe>  
@@ -475,7 +475,7 @@
     </div>
     
     <!--弹出内容层-->
-	<div class="tip-ctent" style="width: 550px" id="issuer-iframe">
+	<div class="tip-ctent" style="width: 600px" id="issuer-iframe">
     	<div class="tiptop"><span id="windowSapn">推荐阅读</span></div>
       	<div class="tipinfo">
 		 	<iframe id="myIssuerFrame" frameborder="0" src="content/issuer/list?pageNumber=1"  style="width: 100%; height: 550px;"></iframe>  
