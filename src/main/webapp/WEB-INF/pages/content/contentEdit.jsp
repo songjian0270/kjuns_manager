@@ -35,6 +35,52 @@
 	</style>
 	
 	<script type="text/javascript">
+	
+	
+	function onSave() {
+		var title = $("#title").val();
+		if (title == "") {
+			alert("请输入标题");
+			return false;
+		}
+		var type = $("#type").val();
+		if (type == "") {
+			alert("请选择类别");
+			return false;
+		}
+		var source = $("#source").val();
+		if (source == "") {
+			alert("请输入来源");
+			return false;
+		}
+		var issuers = $("#issuers").val();
+		if (issuers == "") {
+			alert("请添加发布人");
+			return false;
+		}
+		var summary = $("#summary").val();
+		if (summary == "") {
+			alert("请输入摘要");
+			return false;
+		}
+		var thumbnail = $("#thumbnail").val();
+		if (thumbnail == "") {
+			alert("请上传缩略图");
+			return false;
+		}
+		var mindMap = $("#mindMap").val();
+		if (mindMap == "") {
+			alert("请输上传导图");
+			return false;
+		}
+		var content = $("#content").val();
+		if (mindMap == "") {
+			alert("请输入内容");
+			return false;
+		}
+		return true;
+	}
+	
 		$("#tag-iframe .tiptop a").click(function(){
 			$("#tag-iframe").fadeOut(200);
 		});
@@ -412,7 +458,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input name="" type="submit" class="btn" value="确认保存" /></td>
+					<td><input name="" type="submit" class="btn" value="确认保存" onclick="return onSave()"/></td>
 				</tr>
 			</table>
 		</form>

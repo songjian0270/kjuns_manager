@@ -29,9 +29,24 @@
 	</style>
 	<script type="text/javascript">
 		function onSave() {
-			var userName = $("#title").val();
-			if (userName == "") {
+			var title = $("#title").val();
+			if (title == "") {
 				alert("请输入标Banner名称");
+				return false;
+			}
+			var url = $("#url").val();
+			if (userName == "") {
+				alert("请输入链接地址");
+				return false;
+			}
+			var content = $("#content").val();
+			if (content == "") {
+				alert("请输入内容");
+				return false;
+			}
+			var background = $("#background").val();
+			if (background == "") {
+				alert("请上传背景图片");
 				return false;
 			}
 			return true;

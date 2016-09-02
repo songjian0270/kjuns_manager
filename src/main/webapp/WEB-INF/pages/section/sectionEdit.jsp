@@ -30,7 +30,36 @@
 	</style>
 	
 	<script type="text/javascript">
-		
+			
+		function onSave() {
+			var title = $("#title").val();
+			if (title == "") {
+				alert("请输入标题");
+				return false;
+			}
+			var summary = $("#summary").val();
+			if (summary == "") {
+				alert("请输入摘要");
+				return false;
+			}
+			var issuers = $("#issuers").val();
+			if (issuers == "") {
+				alert("请添加发布人");
+				return false;
+			}
+			var thumbnail = $("#thumbnail").val();
+			if (thumbnail == "") {
+				alert("请上传缩略图");
+				return false;
+			}
+			var background = $("#background").val();
+			if (background == "") {
+				alert("请输上传背景图片");
+				return false;
+			}
+			return true;
+		}
+	
 		var thumbnailKey = null;
 		
 		// 中文字符判断
@@ -314,7 +343,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input name="" type="submit" class="btn" value="确认保存" /></td>
+					<td><input name="" type="submit" class="btn" value="确认保存" onclick="return onSave()" /></td>
 				</tr>
 			</table>
 		</form>

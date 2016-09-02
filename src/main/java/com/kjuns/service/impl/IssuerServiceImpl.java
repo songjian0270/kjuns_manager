@@ -64,6 +64,8 @@ public class IssuerServiceImpl implements IssuerService {
 			return -1;
 		}
 		if (CommonUtils.notEmpty(userInfo.getId())) {// 修改流程
+			userInfo.setDataFlag("2");
+			userInfo.setUpdateDate(datetime);
 			issuerMapper.updateUserInfo(userInfo);
 		} else {
 			String id = UUIDUtils.getUUID().toString().replace("-", "");

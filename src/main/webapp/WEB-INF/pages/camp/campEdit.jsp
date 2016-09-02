@@ -35,6 +35,29 @@
 	</style>
 	
 	<script type="text/javascript">
+	function onSave() {
+		var title = $("#title").val();
+		if (title == "") {
+			alert("请输入标题");
+			return false;
+		}
+		var issuers = $("#issuers").val();
+		if (issuers == "") {
+			alert("请添加发布人");
+			return false;
+		}
+		var thumbnail = $("#thumbnail").val();
+		if (thumbnail == "") {
+			alert("请上传缩略图");
+			return false;
+		}
+		var content = $("#content").val();
+		if (mindMap == "") {
+			alert("请输入内容");
+			return false;
+		}
+		return true;
+	}
 	UE.getEditor("editor" ,{
 	    toolbars: [
 					[
@@ -289,7 +312,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input name="" type="submit" class="btn" value="确认保存" /></td>
+					<td><input name="" type="submit" class="btn" value="确认保存" onclick="return onSave()"/></td>
 				</tr>
 			</table>
 		</form>

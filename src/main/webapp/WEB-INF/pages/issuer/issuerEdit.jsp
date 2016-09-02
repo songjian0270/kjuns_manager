@@ -30,7 +30,24 @@
 	</style>
 	
 	<script type="text/javascript">
-
+	function onSave() {
+		var mobilePhone = $("#mobilePhone").val();
+		if (mobilePhone == "") {
+			alert("请输入手机号码");
+			return false;
+		}
+		var nickName = $("#nickName").val();
+		if (nickName == "") {
+			alert("请输入昵称");
+			return false;
+		}
+		var faceSrc = $("#faceSrc").val();
+		if (faceSrc == "") {
+			alert("请上传头像");
+			return false;
+		}
+		return true;
+	}
 		var thumbnailKey = null;
 		
 		$(function() {

@@ -40,6 +40,10 @@
 		}
 		
 		function gotoPage(pageNumber) {
+			if(pageNumber==''){
+				alert("跳转页码不能为空");
+				return ;
+			}
 			location.href = "${basePath}/content/list?pageNumber=" + pageNumber;
 		}
 		

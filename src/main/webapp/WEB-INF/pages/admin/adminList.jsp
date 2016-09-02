@@ -64,6 +64,10 @@
 	}
 	
 	function gotoPage(pageNumber) {
+		if(pageNumber==''){
+			alert("跳转页码不能为空");
+			return ;
+		}
 		location.href = "<%=basePath%>admin/adminList?pageNumber=" + pageNumber;
 	}
 	

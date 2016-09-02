@@ -40,7 +40,12 @@
 		}
 		
 		function gotoPage(pageNumber) {
-			location.href = "${basePath}/content/issuer/list?pageNumber=" + pageNumber;
+			if(pageNumber==''){
+				alert("跳转页码不能为空");
+				return ;
+			}
+			var nickName = $('#nickName').val();
+			location.href = "${basePath}/content/issuer/list?pageNumber=" + pageNumber +"&nickName="+nickName;
 		}
 		
 		function confirm(){
@@ -83,7 +88,7 @@
 				<table class="functable">
 					<tr>
 						<td class="w100">昵称</td>
-						<td><input name="nickName" type="text" class="ftinput w200" value="${nickName}"/></td>
+						<td><input name="nickName" id="nickName" type="text" class="ftinput w200" value="${nickName}"/></td>
 						<td><input type="submit" class="ftbtn" value="搜索" /></td>
 					</tr>
 				</table>

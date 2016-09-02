@@ -64,6 +64,8 @@ public class IssuerController extends BaseController {
 	 */
 	@RequestMapping(value = "addIssuer")
 	public String addTag(UserInfo userInfo, ModelMap map, HttpSession session) {
+		try {
+
 		Admin my = this.getContent(session);
 		userInfo.setCreateBy(my.getId());
 		userInfo.setUpdateBy(my.getId());
@@ -71,6 +73,10 @@ public class IssuerController extends BaseController {
 			map.addAttribute("message", "发布人昵称已存在");
 		}
 		userInfo = new UserInfo();
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
 		return list(userInfo, 1, map);
 	}
 	

@@ -40,6 +40,10 @@
 		}
 		
 		function gotoPage(pageNumber) {
+			if(pageNumber==''){
+				alert("跳转页码不能为空");
+				return ;
+			}
 			location.href = "${basePath}/issuer/list?pageNumber=" + pageNumber;
 		}
 		
@@ -120,6 +124,7 @@
 						<td><img src="${user.faceSrc}" height="20px" width="20px"/></td>
 						<td>
 							<c:if test="${user.dataFlag==2 }">
+								<a href="issuer/toEdit?id=${user.id}" class="tablelink">修改</a>
 								<a href="javascript:void(0);" onclick="onDelete('${user.id}',21)" class="tablelink">停用</a> 
 							</c:if>
 							<c:if test="${user.dataFlag==21 }">
