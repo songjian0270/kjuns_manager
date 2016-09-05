@@ -44,7 +44,9 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
-			location.href = "${basePath}/banner/bannerList?pageNumber=" + pageNumber;
+			var title = $('#title').val();
+			var content = $('#content').val();
+			location.href = "${basePath}/banner/bannerList?pageNumber=" + pageNumber +"&title="+title+"&content="+content;
 		}
 		
 		function onDelete(id){
@@ -83,9 +85,9 @@
 				<table class="functable">
 					<tr>
 						<td class="w100">名称</td>
-						<td><input name="title" type="text" class="ftinput w200" value="${title}"/></td>
+						<td><input name="title" id="title" type="text" class="ftinput w200" value="${title}"/></td>
 						<td class="w100">内容</td>
-						<td><input name="content" type="text" class="ftinput w200" value="${content}"/></td>
+						<td><input name="content" id="content" type="text" class="ftinput w200" value="${content}"/></td>
 					</tr>
 					<tr>
 						<td></td>

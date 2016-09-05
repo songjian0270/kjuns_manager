@@ -44,7 +44,9 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
-			location.href = "${basePath}/faq/list?pageNumber=" + pageNumber;
+			var title = $('#title').val();
+			var content = $('#content').val();
+			location.href = "${basePath}/faq/list?pageNumber=" + pageNumber +"&title="+title+"&content="+content;
 		}
 	
 	</script>
@@ -71,9 +73,9 @@
 				<table class="functable">
 					<tr>
 						<td class="w100">反馈标题</td>
-						<td><input name="title" type="text" class="ftinput w200" value="${faq.title}"/></td>
+						<td><input name="title" id="title" type="text" class="ftinput w200" value="${faq.title}"/></td>
 						<td class="w100">内容</td>
-						<td><input name="content" type="text" class="ftinput w200" value="${faq.content}"/></td>
+						<td><input name="content" id="content" type="text" class="ftinput w200" value="${faq.content}"/></td>
 					</tr>
 					<tr>
 						<td></td>

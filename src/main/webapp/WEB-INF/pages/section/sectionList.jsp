@@ -44,7 +44,8 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
-			location.href = "${basePath}/section/sectionList?pageNumber=" + pageNumber;
+			var title = $('#title').val();
+			location.href = "${basePath}/section/sectionList?pageNumber=" + pageNumber+"&title="+title;
 		}
 		
 		function onDelete(id){
@@ -83,7 +84,7 @@
 				<table class="functable">
 					<tr>
 						<td class="w100">标题</td>
-						<td><input name="title" type="text" class="ftinput w200" value="${title}"/></td>
+						<td><input name="title" id="title" type="text" class="ftinput w200" value="${title}"/></td>
 					</tr>
 
 					<tr>

@@ -45,7 +45,10 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
-			location.href = "${basePath}/report/list?pageNumber=" + pageNumber;
+			var contentTypet = $('#contentTypet').val();
+			var dataFlagt = $('#dataFlagt').val();
+			alert(dataFlagt);
+			location.href = "${basePath}/report/list?pageNumber=" + pageNumber+"&contentTypet="+contentTypet+"&dataFlagt="+dataFlagt;
 		}
 		
 		function onDelete(id,contentId,contentType){
@@ -96,7 +99,7 @@
 					<tr>
 						<td class="w100">举报类型</td>
 						<td>
-							<select name="contentTypet">
+							<select name="contentTypet" id="contentTypet">
 								<option value="99" <c:if test="${contentTypet==99 }">selected=selected</c:if>>请选择</option>
 								<option value="0" <c:if test="${contentTypet==0}">selected=selected</c:if>>内容</option>
 								<option value="1" <c:if test="${contentTypet==1}">selected=selected</c:if>>评论</option>
@@ -106,8 +109,8 @@
 						</td>
 						<td class="w100">状态</td>
 						<td>
-							<select name="dataFlagt">
-								<option value="" <c:if test="${dataFlagt=='' }">selected=selected</c:if>>请选择</option>
+							<select name="dataFlagt" id="dataFlagt">
+								<option value="99" <c:if test="${dataFlagt==99 }">selected=selected</c:if>>请选择</option>
 								<option value="0" <c:if test="${dataFlagt==0}">selected=selected</c:if>>已处理</option>
 								<option value="1" <c:if test="${dataFlagt==1}">selected=selected</c:if>>未处理</option>
 								<option value="9999" <c:if test="${dataFlagt==9999}">selected=selected</c:if>>已忽略</option>

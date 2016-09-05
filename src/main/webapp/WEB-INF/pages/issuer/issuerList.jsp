@@ -44,7 +44,9 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
-			location.href = "${basePath}/issuer/list?pageNumber=" + pageNumber;
+			var mobilePhone = $('#mobilePhone').val();
+			var nickName = $('#nickName').val();
+			location.href = "${basePath}/issuer/list?pageNumber=" + pageNumber +"&mobilePhone="+mobilePhone+"&nickName="+nickName;
 		}
 		
 		function onDelete(id, isf){
@@ -89,9 +91,9 @@
 				<table class="functable">
 					<tr>
 						<td class="w100">电话号码</td>
-						<td><input name="mobliePhone" type="text" class="ftinput w200" value="${userInfo.mobilePhone}"/></td>
+						<td><input name="mobliePhone" id="mobilePhone" type="text" class="ftinput w200" value="${userInfo.mobilePhone}"/></td>
 						<td class="w100">昵称</td>
-						<td><input name="nickName" type="text" class="ftinput w200" value="${userInfo.nickName}"/></td>
+						<td><input name="nickName" id="nickName" type="text" class="ftinput w200" value="${userInfo.nickName}"/></td>
 					</tr>
 					<tr>
 						<td></td>

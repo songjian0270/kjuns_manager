@@ -44,7 +44,10 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
-			location.href = "${basePath}/content/list?pageNumber=" + pageNumber;
+			var title = $('#title').val();
+			var nickName= $('#nickName').val();
+			var createDate = $('#createDate').val();
+			location.href = "${basePath}/content/list?pageNumber=" + pageNumber + "&title="+title+ "&nickName="+nickName+ "&createDate="+createDate;
 		}
 		
 		function onDelete(id, dataFlag){
@@ -96,9 +99,16 @@
 				<table class="functable">
 					<tr>
 						<td class="w100">标题</td>
-						<td><input name="title" type="text" class="ftinput w200" value="${title}"/></td>
-					</tr>
+						<td><input name="title" id="title" type="text" class="ftinput w200" value="${title}"/></td>
+	
+						<td class="w100">发布人</td>
+						<td><input name="nickName" id="nickName" type="text" class="ftinput w200" value="${nickName}"/></td>
 
+						<td class="w100">时间</td>
+						<td><input name="createDate"  id="createDate" type="text" 
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="dfinput w200"
+							value="${createDate}" /></td>
+					</tr>
 					<tr>
 						<td></td>
 						<td><input type="submit" class="ftbtn" value="搜索" /></td>

@@ -14,6 +14,12 @@
 		<if test="title != null and title != ''">
 			and title like CONCAT('%',#{title},'%')
 		</if>
+		<if test="nickName != null and nickName != ''">
+			and user_id in (SELECT id FROM kjuns_user_info where data_flag = 2 and nick_name like CONCAT('%',#{nickName},'%') )
+		</if>
+		<if test="createDate != null and createDate != ''">
+			and date_format(create_date, '%Y-%m-%d')= #{createDate}
+		</if>
 	</select>
 	
 	<select id="queryContentList" resultType="com.kjuns.model.Content">
@@ -25,6 +31,12 @@
 		</if>
 		<if test="title != null and title != ''">
 			and title like CONCAT('%',#{title},'%')
+		</if>
+		<if test="nickName != null and nickName != ''">
+			and user_id in (SELECT id FROM kjuns_user_info where data_flag = 2 and nick_name like CONCAT('%',#{nickName},'%') )
+		</if>
+		<if test="createDate != null and createDate != ''">
+			and date_format(create_date, '%Y-%m-%d')= #{createDate}
 		</if>
 		order by isTop desc,isHot desc,create_date desc limit #{pageNo},#{pageSize}
 	</select>

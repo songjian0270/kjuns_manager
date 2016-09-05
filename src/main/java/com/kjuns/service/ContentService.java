@@ -7,7 +7,7 @@ import com.kjuns.util.pager.Page;
 
 public interface ContentService extends Serializable {
 
-	Page queryContentList(String sectionId, String title, Page page);
+	Page queryContentList(String sectionId, String title, String nickName, String createDate, Page page);
 	
 	Content selectById(String id);
 

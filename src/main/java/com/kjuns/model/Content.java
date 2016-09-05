@@ -21,6 +21,8 @@ public class Content extends Model{
 	private String tags;
 	
 	private String tagsName;
+
+	private String nickName;
 	
 	private String thumbnail; //缩略图
 	
@@ -120,6 +122,14 @@ public class Content extends Model{
 		this.tagsName = tagsName;
 	}
 
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -142,31 +152,6 @@ public class Content extends Model{
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public List<ContentRelatedArticles> getRelatedArticlesList() {
-		return relatedArticlesList;
-	}
-
-	public void setRelatedArticlesList(
-			List<ContentRelatedArticles> relatedArticlesList) {
-		this.relatedArticlesList = relatedArticlesList;
-	}
-
-	public String getRelatedArticless() {
-		return relatedArticless;
-	}
-
-	public void setRelatedArticless(String relatedArticless) {
-		this.relatedArticless = relatedArticless;
-	}
-
-	public String getRelatedArticlessName() {
-		return relatedArticlessName;
-	}
-
-	public void setRelatedArticlessName(String relatedArticlessName) {
-		this.relatedArticlessName = relatedArticlessName;
 	}
 
 	public String getType() {
@@ -223,6 +208,30 @@ public class Content extends Model{
 
 	public void setIssuersName(String issuersName) {
 		this.issuersName = issuersName;
+	}
+
+	public List<ContentRelatedArticles> getRelatedArticlesList() {
+		return relatedArticlesList;
+	}
+
+	public void setRelatedArticlesList(List<ContentRelatedArticles> relatedArticlesList) {
+		this.relatedArticlesList = relatedArticlesList;
+	}
+
+	public String getRelatedArticless() {
+		return relatedArticless;
+	}
+
+	public void setRelatedArticless(String relatedArticless) {
+		this.relatedArticless = relatedArticless;
+	}
+
+	public String getRelatedArticlessName() {
+		return relatedArticlessName;
+	}
+
+	public void setRelatedArticlessName(String relatedArticlessName) {
+		this.relatedArticlessName = relatedArticlessName;
 	}
 
 }

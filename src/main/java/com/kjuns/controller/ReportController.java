@@ -40,6 +40,7 @@ public class ReportController extends BaseController {
 		map.addAttribute("page", page);
 		map.addAttribute("report", report);
 		map.addAttribute("contentTypet", contentTypet);
+		System.out.println("dataFlagt:"+dataFlagt);
 		map.addAttribute("dataFlagt", dataFlagt);
 		return "report/reportList";
 	}
