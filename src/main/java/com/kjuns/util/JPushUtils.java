@@ -42,7 +42,7 @@ public class JPushUtils {
 	private static Options options = getPushOptions();
 	
 	private static Options getPushOptions(){
-		boolean proEnv = "1".equals(SysConf.ENV) ? true : false;//false 表示要推送测试环境
+		boolean proEnv = SysConf.ENV ? true : false;//false 表示要推送测试环境
 		return Options.newBuilder().setApnsProduction(proEnv).build();
 	}
 	
