@@ -74,7 +74,7 @@ public class JPushUtils {
 	//alias  指定标记Audience
 		public static boolean sendCustomMsgToAll(String content, String title,String url){
 			 boolean res = true;
-			 PushPayload payload = buildPushObject_android_and_ios( content, title,url);
+			 PushPayload payload = buildPushObject_android_and_ios( title, title,url);
 //			 PushPayload payload = buildPushObject_all_all_alert("生日快乐");
 			// PushPayload payload = buildPushObject_all_alias_alerts("设置成功");
 //			 PushPayload payload = buildPushObject_android_and_ios(alias, "设置成功", "测试");
