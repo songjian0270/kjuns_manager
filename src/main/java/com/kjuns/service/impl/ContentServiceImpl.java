@@ -80,6 +80,9 @@ public class ContentServiceImpl implements ContentService {
 			content.setIssuers(issuersArr[0]);
 		}
 		if (CommonUtils.notEmpty(content.getId())) {// 修改流程
+			if(CommonUtils.isEmpty(content.getCreateDate())){
+				content.setCreateDate(datetime);	
+			}
 			contentMapper.updateContent(content);
 			ContentTag ct = new ContentTag();
 			ct.setContentId(content.getId());

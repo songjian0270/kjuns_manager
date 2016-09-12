@@ -66,8 +66,8 @@
 	
 	<update id="updateContent" parameterType="com.kjuns.model.Content">
 		update kjuns_content set title = #{title}, subhead=#{subhead}, summary=#{summary},mind_map=#{mindMap},thumbnail=#{thumbnail} ,
-		source=#{source},content=#{content},update_by = #{updateBy}, update_date = #{updateDate}, type_id=#{type}, isTop=#{isTop},
-		isHot=#{isHot},isDepth=#{isDepth},isTease=#{isTease},user_id=#{issuers} where id = #{id}
+		source=#{source},content=#{content},update_by = #{updateBy}, update_date = #{updateDate}, type_id=#{type}, isTop=#{isTop}, 
+		create_date = #{createDate}, isHot=#{isHot},isDepth=#{isDepth},isTease=#{isTease},user_id=#{issuers} where id = #{id}
 	</update>
 	
 </mapper>
