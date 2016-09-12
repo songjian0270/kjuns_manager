@@ -115,10 +115,11 @@ public class ContentController extends BaseController {
 		if(content.getDataFlag().equals("1")){
 			if(!my.getUsername().equals("admin")){
 				map.addAttribute("message", "对不起,您暂时没有上架权限");
-			}else{
-				contentService.deleteContent(content);
+				return list(null ,content.getSectionId(), content.getTitle(),  content.getNickName(), 
+						content.getCreateDate(), 1, map, session);
 			}
 		}
+		contentService.deleteContent(content);
 		return list(null ,content.getSectionId(), content.getTitle(),  content.getNickName(), 
 				content.getCreateDate(), 1, map, session);
 	}
