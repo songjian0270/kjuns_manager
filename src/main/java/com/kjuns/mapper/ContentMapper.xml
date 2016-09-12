@@ -8,6 +8,9 @@
 
 	<select id="getTotalCount" resultType="int">
 		SELECT count(*) FROM kjuns_content where (data_flag = 1  or data_flag =2)
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
 		<if test="sectionId != null and sectionId != ''">
 			and section_id = #{sectionId}
 		</if>
@@ -26,6 +29,9 @@
 		SELECT id, title, subhead, summary, source, thumbnail, mind_map mindMap, content, data_flag dataFlag, 
 		create_by createBy,create_date createDate ,section_id sectionId,type_id type,isTop,isHot,
 		isDepth,isTease,user_id issuers FROM kjuns_content where (data_flag = 1  or data_flag =2)
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
 		<if test="sectionId != null and sectionId != ''">
 			and section_id = #{sectionId}
 		</if>

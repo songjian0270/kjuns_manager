@@ -7,7 +7,7 @@ import com.kjuns.util.pager.Page;
 
 public interface CampService extends Serializable {
 
-	Page queryCampList(String title, Page page);
+	Page queryCampList(String id, String title, Page page);
 	
 	Camp selectById(String id);
 

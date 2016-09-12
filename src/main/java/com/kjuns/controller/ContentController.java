@@ -47,18 +47,21 @@ public class ContentController extends BaseController {
 	private IssuerService issuerService;
 	
 	@RequestMapping(value="list", method= RequestMethod.GET)
-	public String list(String sectionId, String title, String nickName, String createDate, 
-			int pageNumber, ModelMap map){
+	public String list(String id, String sectionId, String title, String nickName, String createDate, 
+			int pageNumber, ModelMap map, HttpSession session){
+		Admin my = this.getContent(session);
 		Page page = new Page();
 		page.setPageNumber(pageNumber);
-		page = contentService.queryContentList(sectionId, title, nickName, createDate, page);
+		page = contentService.queryContentList(id, sectionId, title, nickName, createDate, page);
 		List<Map<String, Object>> list = typeService.queryTypeList();
 		map.addAttribute("typeList", list);
 		map.addAttribute("page", page);
+		map.addAttribute("id", id);
 		map.addAttribute("title", title);
 		map.addAttribute("nickName", nickName);
 		map.addAttribute("createDate", createDate);
 		map.addAttribute("sectionId", sectionId);
+		map.addAttribute("adminUserName", my.getUsername());
 		return "content/contentList";
 	}
 	
@@ -95,7 +98,7 @@ public class ContentController extends BaseController {
 		if (contentService.addContent(content)== -1) {
 			map.addAttribute("message", "名称已存在");
 		}
-		return list(content.getSectionId(), null, null, null, 1, map);
+		return list(null, content.getSectionId(), null, null, null, 1, map, session);
 	}
 	
 	/**
@@ -109,15 +112,22 @@ public class ContentController extends BaseController {
 		Admin my = this.getContent(session);
 		content.setCreateBy(my.getId());
 		content.setUpdateBy(my.getId());
-		contentService.deleteContent(content);
-		return list(content.getSectionId(), content.getTitle(),  content.getNickName(), content.getCreateDate(), 1, map);
+		if(content.getDataFlag().equals("1")){
+			if(!my.getUsername().equals("admin")){
+				map.addAttribute("message", "对不起,您暂时没有上架权限");
+			}else{
+				contentService.deleteContent(content);
+			}
+		}
+		return list(null ,content.getSectionId(), content.getTitle(),  content.getNickName(), 
+				content.getCreateDate(), 1, map, session);
 	}
 	
 	@RequestMapping(value="relatedArticles/list", method= RequestMethod.GET)
 	public String relatedArticlessList(String title, int pageNumber, ModelMap map) {
 		Page page = new Page();
 		page.setPageNumber(pageNumber);
-		page = contentService.queryContentList( null,title, null, null, page);
+		page = contentService.queryContentList(null, null,title, null, null, page);
 		map.addAttribute("page", page);
 		map.addAttribute("title", title);
 		return "content/relatedArticlesList";
@@ -145,9 +155,13 @@ public class ContentController extends BaseController {
 	
 	@RequestMapping(value="pushNotifi", method= RequestMethod.GET)
 	public String pushNotifi(String id, ModelMap map, HttpSession session){
-
-		contentService.pushNotifi(id);
-		return list(null,null,null,null, 1, map);
+		Admin my = this.getContent(session);
+		if(!my.getUsername().equals("admin")){
+			map.addAttribute("message", "对不起,推送权限");
+		}else{
+			contentService.pushNotifi(id);
+		}
+		return list(null, null,null,null,null, 1, map, session);
 	}
 	
 }

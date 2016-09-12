@@ -31,11 +31,12 @@ public class CampController extends BaseController {
 	private CampService campService;
 	
 	@RequestMapping(value="list", method= RequestMethod.GET)
-	public String list(String title, int pageNumber, ModelMap map) {
+	public String list(String id, String title, int pageNumber, ModelMap map) {
 		Page page = new Page();
 		page.setPageNumber(pageNumber);
-		page = campService.queryCampList(title, page);
+		page = campService.queryCampList(id, title, page);
 		map.addAttribute("page", page);
+		map.addAttribute("id", id);
 		map.addAttribute("title", title);
 		return "camp/campList";
 	}
@@ -70,7 +71,7 @@ public class CampController extends BaseController {
 		if (campService.addCamp(camp) == -1) {
 			map.addAttribute("message", "标题已存在");
 		}
-		return list(null, 1, map);
+		return list(null, null, 1, map);
 	}
 	
 	/**
@@ -85,7 +86,7 @@ public class CampController extends BaseController {
 		camp.setCreateBy(my.getId());
 		camp.setUpdateBy(my.getId());
 		campService.deleteCamp(camp);
-		return list(camp.getTitle(), 1, map);
+		return list(null, camp.getTitle(), 1, map);
 	}
 	
 }

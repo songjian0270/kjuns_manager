@@ -40,9 +40,9 @@ public class ContentServiceImpl implements ContentService {
 	private ContentRelatedArticlesMapper contentRelatedArticlesMapper;
 
 	@Override
-	public Page queryContentList(String sectionId, String title, String nickName, String createDate, Page page) {
-		int total = contentMapper.getTotalCount(sectionId, title, nickName, createDate);
-		List<Content> contents = contentMapper.queryContentList(sectionId, title, page.getStart(), page.getPageSize(), nickName, createDate);
+	public Page queryContentList(String id, String sectionId, String title, String nickName, String createDate, Page page) {
+		int total = contentMapper.getTotalCount(id, sectionId, title, nickName, createDate);
+		List<Content> contents = contentMapper.queryContentList(id, sectionId, title, page.getStart(), page.getPageSize(), nickName, createDate);
 		for(Content content:contents){
 			if(CommonUtils.notEmpty(content.getSummary())){
 				if(content.getSummary().length() > 50){

@@ -44,8 +44,9 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
+			var id = $('#id').val();
 			var title = $('#title').val();
-			location.href = "${basePath}/camp/list?pageNumber=" + pageNumber + "&title="+title;
+			location.href = "${basePath}/camp/list?pageNumber=" + pageNumber + "&title="+title+ "&id="+id;
 		}
 		
 		function onDelete(id){
@@ -82,7 +83,9 @@
 			
 			<div class="ftarea">
 				<table class="functable">
-					<tr>
+						<tr>
+						<td class="w100">编号</td>
+						<td><input name="id" id="id" type="text" class="ftinput w200" value="${id}"/></td>
 						<td class="w100">标题</td>
 						<td><input name="title" id="title" type="text" class="ftinput w200" value="${title}"/></td>
 					</tr>
@@ -98,6 +101,7 @@
 		<table class="tablelist">
 			<thead>
 				<tr>
+					<th>编号</th>
 					<th>标题</th>
 					<th>缩略图</th>
 					<th>创建时间</th>
@@ -107,6 +111,7 @@
 			<tbody>
 				<c:forEach items="${page.list}" var="camp">
 					<tr>
+						<td >${camp.id}</td>
 						<td >${camp.title}</td>
 						<td ><img src="${camp.thumbnail}" height="20px" width="20px"/></td>
 						<td >${camp.createDate}</td>

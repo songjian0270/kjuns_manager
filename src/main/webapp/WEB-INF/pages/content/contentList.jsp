@@ -44,10 +44,11 @@
 				alert("跳转页码不能为空");
 				return ;
 			}
+			var id = $('#id').val();
 			var title = $('#title').val();
 			var nickName= $('#nickName').val();
 			var createDate = $('#createDate').val();
-			location.href = "${basePath}/content/list?pageNumber=" + pageNumber + "&title="+title+ "&nickName="+nickName+ "&createDate="+createDate;
+			location.href = "${basePath}/content/list?pageNumber=" + pageNumber + "&title="+title+ "&nickName="+nickName+ "&createDate="+createDate+ "&id="+id;
 		}
 		
 		function onDelete(id, dataFlag){
@@ -98,6 +99,8 @@
 			<div class="ftarea">
 				<table class="functable">
 					<tr>
+						<td class="w100">编号</td>
+						<td><input name="id" id="id" type="text" class="ftinput w200" value="${id}"/></td>
 						<td class="w100">标题</td>
 						<td><input name="title" id="title" type="text" class="ftinput w200" value="${title}"/></td>
 	
@@ -148,13 +151,13 @@
 						<td>${content.createDate}</td>
 						<td>
 							<a href="content/toEdit?id=${content.id}&sectionId=${sectionId}" class="tablelink">修改</a>
-							<a href="javascript:void(0);" onclick="onNotifi('${content.id}')" class="tablelink">推送</a>
-							
-							<c:if test="${content.dataFlag==2}">
-								<a href="javascript:void(0);" onclick="onDelete('${content.id}',1)" class="tablelink">上架</a> 
+							<c:if test="${adminUserName eq 'admin' }">
+								<a href="javascript:void(0);" onclick="onNotifi('${content.id}')" class="tablelink">推送</a>
+								<c:if test="${content.dataFlag==2}">
+									<a href="javascript:void(0);" onclick="onDelete('${content.id}',1)" class="tablelink">上架</a> 
+								</c:if>
+								<a href="javascript:void(0);" onclick="onDelete('${content.id}',0)" class="tablelink">删除</a> 
 							</c:if>
-							
-							<a href="javascript:void(0);" onclick="onDelete('${content.id}',0)" class="tablelink">删除</a> 
 						</td>
 					</tr>
 				</c:forEach>

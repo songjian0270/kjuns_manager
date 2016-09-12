@@ -28,9 +28,9 @@ public class CampServiceImpl implements CampService {
 	private IssuerMapper issuerMapper;
 
 	@Override
-	public Page queryCampList(String title, Page page) {
-		int total = campMapper.getTotalCount(title);
-		List<Camp> Camps = campMapper.queryCampList(title, page.getStart(), page.getPageSize());
+	public Page queryCampList(String id, String title, Page page) {
+		int total = campMapper.getTotalCount(id, title);
+		List<Camp> Camps = campMapper.queryCampList(id, title, page.getStart(), page.getPageSize());
 		for(Camp Camp:Camps){
 			if(CommonUtils.notEmpty(Camp.getThumbnail())){
 				Camp.setThumbnail(CommonUtils.getImage(Camp.getThumbnail()));

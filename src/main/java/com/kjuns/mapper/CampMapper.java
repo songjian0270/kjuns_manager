@@ -11,9 +11,9 @@ public interface CampMapper extends Serializable {
 	
 	int selectByTitle(@Param(value="title")String title);
 
-	int getTotalCount(@Param(value="title")String title);
+	int getTotalCount(@Param(value="id")String id, @Param(value="title")String title);
 
-	List<Camp> queryCampList(@Param(value="title")String title, 
+	List<Camp> queryCampList(@Param(value="id")String id, @Param(value="title")String title, 
 			@Param(value="pageNo")int pageNo, @Param(value="pageSize")int pageSize);
 
 	Camp selectById(String id);

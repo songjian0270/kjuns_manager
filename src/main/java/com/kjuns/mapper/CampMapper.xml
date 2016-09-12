@@ -8,6 +8,9 @@
 
 	<select id="getTotalCount" resultType="int" parameterType="String">
 		SELECT count(*) FROM kjuns_camp where data_flag = 1
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
 		<if test="title != null and title != ''">
 			and title like CONCAT('%',#{title},'%')
 		</if>
@@ -16,6 +19,9 @@
 	<select id="queryCampList" resultType="com.kjuns.model.Camp">
 		SELECT id, title, content, thumbnail,user_id issuers, create_by createBy,create_date createDate ,isTop
 		FROM kjuns_camp where data_flag = 1 
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
 		<if test="title != null and title != ''">
 			and title like CONCAT('%',#{title},'%')
 		</if>
