@@ -36,7 +36,7 @@
 			}
 			$('#url').val($("#url").val().trim());
 			var url = $("#url").val();
-			if (userName == "") {
+			if (url == "") {
 				alert("请输入链接地址");
 				return false;
 			}
